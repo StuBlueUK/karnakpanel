@@ -1,0 +1,9 @@
+# KarnakPanel Dovecot SQL — virtual mailbox auth against the panel database.
+# Rendered by installer/lib/exim-dovecot-spamassassin.sh (__DOVECOT_DBPASS__ substituted).
+# CRITICAL: password_query must return the FULL address as `user`, or Dovecot
+# rewrites the username to the bare localpart and the userdb lookup below fails.
+driver = mysql
+connect = host=localhost dbname=skypanel user=dovecot password=__DOVECOT_DBPASS__
+default_pass_scheme = BLF-CRYPT
+password_query = SELECT CONCAT(e.localpart,'@',d.domain) AS user, e.password_hash AS password FROM email_accounts e JOIN domains d ON d.id = e.domain_id WHERE e.localpart = '%n' AND d.domain = '%d'
+user_query = SELECT '/var/mail/virtual/%d/%n' AS home, 'maildir:/var/mail/virtual/%d/%n' AS mail, 5000 AS uid, 5000 AS gid, CONCAT('*:storage=', e.quota_mb, 'M') AS quota_rule FROM email_accounts e JOIN domains d ON d.id = e.domain_id WHERE e.localpart = '%n' AND d.domain = '%d'

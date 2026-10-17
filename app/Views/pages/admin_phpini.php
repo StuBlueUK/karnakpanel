@@ -1,0 +1,9 @@
+<h2>🐘 PHP.ini <small style="color:var(--muted)">admin — validated, tested, auto-rollback</small></h2>
+<div class="card"><form method="get" action="/admin/phpini" class="inline">
+<select name="ver" onchange="this.form.submit()"><?php foreach($vers as $v):?><option value="<?=$v?>"<?php if($v===$ver):?> selected<?php endif;?>>PHP 8.<?=$v[1]?></option><?php endforeach;?></select></form></div>
+<div class="card"><table><tr><th>Directive</th><th>Current</th><th>New value</th></tr><?php foreach($keys as $k):?><tr><td><code><?=Helpers::e($k)?></code></td><td><code><?=Helpers::e($vals[$k] ?? '(default)')?></code></td>
+<td><form method="post" action="/admin/phpini-set" class="inline"><input type="hidden" name="csrf" value="<?=Helpers::csrf()?>"><input type="hidden" name="ver" value="<?=$ver?>"><input type="hidden" name="key" value="<?=Helpers::e($k)?>"><input name="value" placeholder="<?=Helpers::e($vals[$k] ?? '')?>" required style="max-width:120px"><button class="btn small">Set</button></form></td></tr><?php endforeach;?></table>
+<small style="color:var(--muted)">memory/upload/post like 256M · max_execution_time 10–900s · display_errors On|Off. FPM config-tested before reload; rolled back on failure.</small></div>
+<div class="card"><h3>⚡ OPcache <small style="color:var(--muted)">PHP 8.<?=$ver[1]?> — currently <b><?=Helpers::e($opcache ?? '?')?></b></small></h3>
+<form method="post" action="/admin/opcache-set" class="inline" onsubmit="return confirm('Toggle OPcache? Applies after FPM reload.')"><input type="hidden" name="csrf" value="<?=Helpers::csrf()?>"><input type="hidden" name="ver" value="<?=$ver?>"><input type="hidden" name="state" value="<?= ($opcache ?? '') === 'on' ? 'off' : 'on' ?>"><button class="btn small">Turn <?= ($opcache ?? '') === 'on' ? 'off' : 'on' ?></button></form>
+<small style="color:var(--muted)">Off for debugging (changes apply instantly), on for production speed.</small></div>

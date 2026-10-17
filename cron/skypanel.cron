@@ -1,0 +1,38 @@
+# NOTE: the */5 jobs are deliberately staggered (2,3,4-minute offsets) so a
+# small box never takes five full walks in the same sixty seconds.
+# quota-check.sh is intentionally ABSENT: report-only output to nowhere —
+# quota-enforce.sh already measures + caches + enforces. Run quota-check by
+# hand when you want the human-readable report.
+15 * * * * root /usr/local/skypanel/scripts/bandwidth-collect.sh >/dev/null 2>&1
+*/5 * * * * root /usr/local/skypanel/scripts/service-watchdog.sh >/dev/null 2>&1
+1-59/5 * * * * root /usr/local/skypanel/scripts/cron-monitor.sh >/dev/null 2>&1
+2-59/5 * * * * root /usr/local/skypanel/scripts/push-digest.sh >/dev/null 2>&1
+3-59/5 * * * * root /usr/local/skypanel/scripts/user-abuse.sh >/dev/null 2>&1
+2-59/5 * * * * root /usr/local/skypanel/scripts/mail-guard.sh >/dev/null 2>&1
+17 4 * * * root /usr/local/skypanel/scripts/expiry-check.sh >/dev/null 2>&1
+19 3 * * * root /usr/local/skypanel/scripts/dns-glue-check.sh >/dev/null 2>&1
+19 4 * * * root /usr/local/skypanel/scripts/update-check.sh >/dev/null 2>&1
+30 * * * * root /usr/local/skypanel/scripts/malware-scan.sh >/dev/null 2>&1
+4-59/5 * * * * root /usr/local/skypanel/scripts/quota-enforce.sh >/dev/null 2>&1
+30 1 * * * root /usr/local/skypanel/scripts/bandwidth-enforce.sh >/dev/null 2>&1
+5 0 1 * * root /usr/local/skypanel/scripts/bandwidth-reset.sh >/dev/null 2>&1
+0 2 * * * root /usr/local/skypanel/scripts/backup-all.sh >/dev/null 2>&1
+30 3 * * * root /usr/local/skypanel/scripts/offsite-sync.sh >/dev/null 2>&1
+45 3 * * * root /usr/local/skypanel/scripts/restic-offsite.sh >/dev/null 2>&1
+0 4 * * 0 root /usr/local/skypanel/scripts/restic-forget.sh >/dev/null 2>&1
+30 5 * * 0 root /usr/local/skypanel/scripts/restic-check.sh >/dev/null 2>&1
+0 6 1 * * root /usr/local/skypanel/scripts/restic-verify.sh >/dev/null 2>&1
+23 3 * * 0 root /usr/local/skypanel/scripts/fpm-harden.sh --all >/dev/null 2>&1
+17 */6 * * * root /usr/local/skypanel/scripts/egress-watch.sh >/dev/null 2>&1
+23 4 * * * root /usr/local/skypanel/scripts/integrity-check.sh >/dev/null 2>&1
+37 * * * * root /usr/local/skypanel/scripts/fleet-scan.sh >/dev/null 2>&1
+11,41 * * * * root /usr/local/skypanel/scripts/mail-reports-ingest.sh >/dev/null 2>&1
+6-59/10 * * * * root /usr/local/skypanel/scripts/perms-fix.sh >/dev/null 2>&1
+47 4 * * * root /usr/local/skypanel/scripts/home-perms.sh all >/dev/null 2>&1
+41 4 * * * root /usr/local/skypanel/scripts/app-isolate.sh >/dev/null 2>&1
+# (prod-only downloads telemetry lives in prod/ + a hand-managed cron line on
+# the web box — deliberately NOT here, so fresh installs never carry it)
+17 3,15 * * * root certbot renew --quiet --post-hook "/usr/local/skypanel/scripts/ssl-renew-hook.sh" >>/var/log/karnakpanel/certbot.log 2>&1
+7 * * * * root /usr/local/skypanel/scripts/roundcube-gc.sh >/dev/null 2>&1
+# file-manager trash: entries older than 30 days are deleted for good
+29 4 * * * root /usr/local/skypanel/scripts/file-trash-purge.sh 30 >>/var/log/karnakpanel/trash-purge.log 2>&1

@@ -1,0 +1,19 @@
+options {
+  directory "/var/cache/bind";
+  // Authoritative for hosted zones + resolver for localhost (panel, exim, php).
+  // World gets authoritative answers only; recursion is localhost-only.
+  recursion yes;
+  allow-recursion { localhost; };
+  allow-query { any; };
+  allow-transfer { none; };
+  // Forward-only: small nodes/VPS often can't do full iterative recursion reliably
+  // (filtered high ports, DNSSEC chain stalls). Upstream resolvers do the walking.
+  forward only;
+  forwarders { 1.1.1.1; 8.8.8.8; };
+  // Local validation stalls where full iterative/DNSSEC traffic is filtered
+  // (common in containers); upstreams 1.1.1.1/8.8.8.8 validate. DO NOT re-enable
+  // without verifying `dig @127.0.0.1 example.com` (no +cd) answers promptly.
+  dnssec-validation no;
+  listen-on { any; };
+  listen-on-v6 { any; };
+};
