@@ -1,0 +1,21 @@
+{
+    "name": "Amplify",
+    "for": "Marketing agency",
+    "category": "Business & professional",
+    "pages": [
+        "Home",
+        "Work",
+        "About",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#1e1b4b",
+        "c2": "#7c3aed",
+        "c3": "#1e1b2e",
+        "c4": "#f5f3ff",
+        "c5": "#ffffff",
+        "head": "Space Grotesk",
+        "body": "Inter",
+        "radius": 16
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "name": "Lotus",
+    "for": "Yoga & pilates studio",
+    "category": "Beauty & wellness",
+    "pages": [
+        "Home",
+        "Timetable",
+        "Teachers",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#3b3561",
+        "c2": "#5b4bc4",
+        "c3": "#25223a",
+        "c4": "#f4f2fb",
+        "c5": "#ffffff",
+        "head": "Manrope",
+        "body": "Nunito",
+        "radius": 20
+    }
+}

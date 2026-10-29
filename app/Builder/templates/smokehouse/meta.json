@@ -1,0 +1,21 @@
+{
+    "name": "Smokehouse",
+    "for": "Street food & takeaway",
+    "category": "Food & drink",
+    "pages": [
+        "Home",
+        "Menu",
+        "Find us",
+        "Events"
+    ],
+    "theme": {
+        "c1": "#1c1917",
+        "c2": "#c2410c",
+        "c3": "#1c1917",
+        "c4": "#f5f0eb",
+        "c5": "#ffffff",
+        "head": "Oswald",
+        "body": "Archivo",
+        "radius": 6
+    }
+}

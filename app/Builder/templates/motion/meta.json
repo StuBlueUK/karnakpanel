@@ -1,0 +1,21 @@
+{
+    "name": "Motion",
+    "for": "Physiotherapy clinic",
+    "category": "Health & fitness",
+    "pages": [
+        "Home",
+        "Conditions",
+        "Prices",
+        "Book"
+    ],
+    "theme": {
+        "c1": "#13315c",
+        "c2": "#2563eb",
+        "c3": "#1e293b",
+        "c4": "#eff4fd",
+        "c5": "#ffffff",
+        "head": "Manrope",
+        "body": "Inter",
+        "radius": 12
+    }
+}

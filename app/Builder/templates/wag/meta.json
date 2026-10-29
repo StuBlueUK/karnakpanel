@@ -1,0 +1,21 @@
+{
+    "name": "Wag",
+    "for": "Dog groomer & walker",
+    "category": "Health & fitness",
+    "pages": [
+        "Home",
+        "Prices",
+        "About",
+        "Book"
+    ],
+    "theme": {
+        "c1": "#3b2a5a",
+        "c2": "#b4400b",
+        "c3": "#2a2236",
+        "c4": "#fbf3ee",
+        "c5": "#ffffff",
+        "head": "Nunito",
+        "body": "Nunito",
+        "radius": 24
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "name": "Reel",
+    "for": "Videographer & film maker",
+    "category": "Creative & events",
+    "pages": [
+        "Home",
+        "Packages",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#0b0b14",
+        "c2": "#a78bfa",
+        "c3": "#e5e7f0",
+        "c4": "#151526",
+        "c5": "#0f0f1c",
+        "head": "Space Grotesk",
+        "body": "Inter",
+        "radius": 12,
+        "c6": "#f472b6",
+        "style": "midnight"
+    }
+}

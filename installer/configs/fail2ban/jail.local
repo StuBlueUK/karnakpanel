@@ -1,0 +1,79 @@
+[DEFAULT]
+bantime = 3600
+findtime = 600
+maxretry = 5
+banaction = ufw
+
+# backend pinned like every jail here: Debian's jail.d/defaults-debian.conf
+# sets sshd to the systemd backend, which would ignore this logpath.
+[sshd]
+enabled = true
+backend = polling
+port = 22
+filter = sshd
+logpath = /var/log/auth.log
+
+[lsws]
+enabled = true
+backend = polling
+port = 80,443,8090,7080,8091,8092
+filter = lsws
+logpath = /usr/local/lsws/logs/error.log
+maxretry = 10
+
+# the panel itself: in-app throttle (8/15min) still applies; this drops
+# scanners at the firewall before they spend PHP. Log lines come from
+# Helpers::log() (failed login / login throttled).
+[panel]
+enabled = true
+backend = polling
+port = 8090
+filter = skypanel-panel
+logpath = /var/log/karnakpanel/panel.log
+maxretry = 5
+
+# WordPress-style login floods on customer sites: the vhost bot-shield (waf)
+# 403s scan probes, this bans POST storms on wp-login.php/xmlrpc.php. Tuned
+# loose (15 hits/5min) — humans never post logins that fast.
+# PORT-SCOPED action (not stock ufw): stock ufw ignores the jail port and
+# would firewall SSH/FTP/panel too — a web flood must never lock out
+# everything. ufw-port denies 80/443 only (delete by spec, not rule number).
+[weblogin]
+enabled = true
+backend = polling
+banaction = ufw-port
+port = 80,443
+filter = skypanel-weblogin
+logpath = /var/log/karnakpanel/*.access.log
+maxretry = 15
+findtime = 300
+bantime = 3600
+
+[phpmyadmin]
+enabled = true
+backend = polling
+port = 8092
+filter = phpmyadmin
+logpath = /var/log/phpmyadmin/access.log
+maxretry = 5
+
+[exim]
+enabled = true
+backend = polling
+port = 25,587,465
+filter = exim
+logpath = /var/log/exim4/mainlog
+
+[dovecot]
+enabled = true
+backend = polling
+port = 143,993
+filter = dovecot
+logpath = /var/log/dovecot.log
+
+[vsftpd]
+enabled = true
+backend = polling
+port = ftp,ftp-data,ftps,ftps-data
+filter = vsftpd
+logpath = /var/log/vsftpd.log

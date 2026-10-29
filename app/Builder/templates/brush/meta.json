@@ -1,0 +1,21 @@
+{
+    "name": "Brush",
+    "for": "Painter & decorator",
+    "category": "Home & trades",
+    "pages": [
+        "Home",
+        "Services",
+        "Gallery",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#2e2a4a",
+        "c2": "#be185d",
+        "c3": "#1f1d2b",
+        "c4": "#f6f3fa",
+        "c5": "#ffffff",
+        "head": "Space Grotesk",
+        "body": "Inter",
+        "radius": 10
+    }
+}

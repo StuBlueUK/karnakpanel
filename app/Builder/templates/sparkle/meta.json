@@ -1,0 +1,21 @@
+{
+    "name": "Sparkle",
+    "for": "Cleaning company",
+    "category": "Home & trades",
+    "pages": [
+        "Home",
+        "Prices",
+        "FAQ",
+        "Quote"
+    ],
+    "theme": {
+        "c1": "#0f3d3e",
+        "c2": "#0e7490",
+        "c3": "#1e293b",
+        "c4": "#ecf8f8",
+        "c5": "#ffffff",
+        "head": "Plus Jakarta Sans",
+        "body": "Plus Jakarta Sans",
+        "radius": 16
+    }
+}

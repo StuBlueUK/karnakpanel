@@ -1,0 +1,22 @@
+{
+    "name": "Shelf",
+    "for": "Independent bookshop",
+    "category": "Shops & retail",
+    "pages": [
+        "Home",
+        "Events",
+        "Visit"
+    ],
+    "theme": {
+        "c1": "#2b1d14",
+        "c2": "#7c3a12",
+        "c3": "#2b2118",
+        "c4": "#f6efe4",
+        "c5": "#fffdf8",
+        "head": "DM Serif Display",
+        "body": "Lato",
+        "radius": 4,
+        "c6": "#7c3a12",
+        "style": "editorial"
+    }
+}

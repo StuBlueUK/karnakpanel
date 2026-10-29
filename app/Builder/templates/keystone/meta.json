@@ -1,0 +1,22 @@
+{
+    "name": "Keystone",
+    "for": "Architect & interior design",
+    "category": "Business",
+    "pages": [
+        "Home",
+        "Projects",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#111111",
+        "c2": "#8a5a2b",
+        "c3": "#1a1a1a",
+        "c4": "#f4f1ea",
+        "c5": "#fbfaf6",
+        "head": "Space Grotesk",
+        "body": "Lato",
+        "radius": 0,
+        "c6": "#8a5a2b",
+        "style": "editorial"
+    }
+}

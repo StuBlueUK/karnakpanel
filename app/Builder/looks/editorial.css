@@ -1,0 +1,42 @@
+/* Editorial: a magazine page. Serif-led, hairline rules instead of shadows,
+   a light hero on the soft background (c3 text), dark c1 buttons with page
+   (c5) text. c2 is the single accent; c6 is not used. */
+.kb-header{background:var(--kb-c5);backdrop-filter:none;border-bottom:1px solid var(--kb-c3)}
+.kb-header .kb-container{min-height:76px}
+.kb-brand{color:var(--kb-c3);font-weight:700;font-size:1.45rem;letter-spacing:-.01em}
+nav[data-kb=menu] a{font-weight:500;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+h1,h2{font-weight:600;letter-spacing:-.02em}
+.kb-hero{background:var(--kb-c4);color:var(--kb-c3);border-bottom:1px solid var(--kb-c3)}
+.kb-hero h1{font-size:clamp(2.6rem,6.5vw,4.8rem);line-height:1.02;max-width:16ch}
+.kb-eyebrow,.kb-hero .kb-eyebrow,.kb-dark .kb-eyebrow{opacity:1;letter-spacing:.18em;padding-top:.7em;border-top:2px solid currentColor}
+.kb-hero .kb-eyebrow{color:var(--kb-c2)}
+.kb-lead{font-family:var(--kb-head);font-style:italic;opacity:.9}
+.kb-btn:not(.kb-ghost){background:var(--kb-c1);border-color:var(--kb-c1);color:var(--kb-c5)}
+.kb-btn:hover{transform:none;box-shadow:none;text-decoration:underline;text-underline-offset:.25em}
+.kb-btn.kb-ghost,.kb-hero .kb-btn.kb-ghost{color:var(--kb-c3);border-color:var(--kb-c3)}
+.kb-dark .kb-btn:not(.kb-ghost){background:var(--kb-c5);border-color:var(--kb-c5);color:var(--kb-c1)}
+.kb-dark .kb-btn.kb-ghost{color:var(--kb-c5);border-color:currentColor}
+.kb-section.kb-soft{border-block:1px solid color-mix(in srgb,var(--kb-c3) 18%,transparent)}
+.kb-card{background:transparent;box-shadow:none;border-radius:0;padding:22px 0 0;border-top:2px solid var(--kb-c3)}
+.kb-dark .kb-card{color:inherit;border-top-color:currentColor}
+.kb-icon{width:auto;height:auto;place-items:start;background:none;color:var(--kb-c2);font-size:1.8rem}
+.kb-step{background:none;color:var(--kb-c2);border:1px solid currentColor;font-family:var(--kb-head)}
+.kb-quote{font-family:var(--kb-head);font-size:1.5rem;line-height:1.35;padding-left:1em;border-left:2px solid var(--kb-c2)}
+.kb-quote cite{font-family:var(--kb-body);font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:inherit}
+.kb-card .kb-quote{padding-left:0;border-left:0}
+.kb-price .kb-amount{color:var(--kb-c3);font-weight:600}
+.kb-price.kb-featured{outline:0;border-top:6px solid var(--kb-c2)}
+.kb-menu .kb-cost{color:var(--kb-c3)}
+.kb-list li::before{width:.9em;height:1px;top:1.05em;border-radius:0;background:currentColor}
+.kb-faq{border-bottom-color:color-mix(in srgb,var(--kb-c3) 40%,transparent)}
+.kb-faq summary{font-family:var(--kb-head);font-size:1.25rem;font-weight:600}
+.kb-table th,.kb-table td{border-bottom-color:color-mix(in srgb,var(--kb-c3) 35%,transparent)}
+.kb-badges li,.kb-hero .kb-badges li,.kb-dark .kb-badges li{background:none;border:1px solid currentColor;border-radius:0}
+.kb-soc,.kb-hero .kb-soc,.kb-footer .kb-soc{background:none;color:var(--kb-c3);border:1px solid currentColor}
+.kb-dark .kb-soc{background:none;border:1px solid currentColor}
+.kb-soc:hover{background:var(--kb-c3);color:var(--kb-c5)}
+.kb-form input,.kb-form textarea{border:0;border-bottom:1px solid var(--kb-c3);border-radius:0;background:transparent;padding-inline:0}
+.kb-footer{background:var(--kb-c5);color:var(--kb-c3);border-top:3px double var(--kb-c3)}
+.kb-footer a,.kb-footer nav[data-kb=menu] a{color:var(--kb-c3)}
+.kb-credit{background:var(--kb-c5);color:color-mix(in srgb,var(--kb-c3) 70%,transparent);border-top-color:color-mix(in srgb,var(--kb-c3) 15%,transparent)}
+.kb-slide::scroll-marker{border-radius:0}

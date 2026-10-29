@@ -1,0 +1,22 @@
+{
+    "name": "Harbour",
+    "for": "Holiday cottages & self-catering",
+    "category": "Travel & stays",
+    "pages": [
+        "Home",
+        "Cottages",
+        "Book"
+    ],
+    "theme": {
+        "c1": "#1e2a3a",
+        "c2": "#1d4e89",
+        "c3": "#1f2933",
+        "c4": "#eef1f4",
+        "c5": "#ffffff",
+        "head": "DM Serif Display",
+        "body": "DM Sans",
+        "radius": 2,
+        "c6": "#1d4e89",
+        "style": "editorial"
+    }
+}

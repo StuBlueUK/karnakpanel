@@ -1,0 +1,22 @@
+{
+    "name": "Summit",
+    "for": "Adventure tours & outdoor activities",
+    "category": "Travel & stays",
+    "pages": [
+        "Home",
+        "Trips",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#3d2416",
+        "c2": "#b83c0a",
+        "c3": "#2e1f17",
+        "c4": "#fbecd3",
+        "c5": "#fff8ec",
+        "head": "DM Serif Display",
+        "body": "Karla",
+        "radius": 14,
+        "c6": "#f2b33d",
+        "style": "retro"
+    }
+}

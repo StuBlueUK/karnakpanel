@@ -1,0 +1,22 @@
+{
+    "name": "Relay",
+    "for": "SaaS & business software",
+    "category": "Tech & startups",
+    "pages": [
+        "Home",
+        "Features",
+        "Pricing"
+    ],
+    "theme": {
+        "c1": "#0f172a",
+        "c2": "#4338ca",
+        "c3": "#1e1b4b",
+        "c4": "#f3f4ff",
+        "c5": "#ffffff",
+        "head": "Manrope",
+        "body": "Inter",
+        "radius": 14,
+        "c6": "#0e7490",
+        "style": "glass"
+    }
+}

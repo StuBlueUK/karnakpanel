@@ -1,0 +1,23 @@
+{
+    "name": "Afterdark",
+    "for": "Nightclub & DJ",
+    "category": "Modern & bold",
+    "pages": [
+        "Home",
+        "Events",
+        "Private hire",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#050509",
+        "c2": "#22d3ee",
+        "c3": "#ededf5",
+        "c4": "#14141f",
+        "c5": "#0b0b12",
+        "head": "Oswald",
+        "body": "Inter",
+        "radius": 10,
+        "c6": "#e879f9",
+        "style": "midnight"
+    }
+}

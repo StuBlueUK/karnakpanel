@@ -1,0 +1,21 @@
+{
+    "name": "Paws",
+    "for": "Veterinary practice",
+    "category": "Health & fitness",
+    "pages": [
+        "Home",
+        "Services",
+        "Team",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#1e3a5f",
+        "c2": "#0d7a5f",
+        "c3": "#1f2937",
+        "c4": "#eef7f3",
+        "c5": "#ffffff",
+        "head": "Nunito",
+        "body": "Nunito",
+        "radius": 20
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "name": "Kin",
+    "for": "Charity & community group",
+    "category": "Community & education",
+    "pages": [
+        "Home",
+        "Donate",
+        "Volunteer",
+        "About"
+    ],
+    "theme": {
+        "c1": "#0f4c4c",
+        "c2": "#a14a0b",
+        "c3": "#1f2a2a",
+        "c4": "#eef6f5",
+        "c5": "#ffffff",
+        "head": "Nunito",
+        "body": "Nunito",
+        "radius": 16
+    }
+}

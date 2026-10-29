@@ -1,0 +1,22 @@
+{
+    "name": "Thread",
+    "for": "Clothing boutique",
+    "category": "Shops & retail",
+    "pages": [
+        "Home",
+        "Collections",
+        "Visit"
+    ],
+    "theme": {
+        "c1": "#111111",
+        "c2": "#b91c1c",
+        "c3": "#1a1a1a",
+        "c4": "#f4f1ea",
+        "c5": "#fbfaf6",
+        "head": "Playfair Display",
+        "body": "Lato",
+        "radius": 0,
+        "c6": "#b91c1c",
+        "style": "editorial"
+    }
+}

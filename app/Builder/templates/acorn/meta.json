@@ -1,0 +1,22 @@
+{
+    "name": "Acorn",
+    "for": "Nursery & childcare",
+    "category": "Community & education",
+    "pages": [
+        "Home",
+        "Rooms",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#2f4a1f",
+        "c2": "#3f7d20",
+        "c3": "#26331d",
+        "c4": "#f3f8ec",
+        "c5": "#ffffff",
+        "head": "Nunito",
+        "body": "Nunito",
+        "radius": 20,
+        "c6": "#e3a33b",
+        "style": "soft"
+    }
+}

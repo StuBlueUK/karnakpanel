@@ -1,0 +1,22 @@
+{
+    "name": "Vinyl",
+    "for": "Record shop",
+    "category": "Shops & retail",
+    "pages": [
+        "Home",
+        "Sell",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#2a1a3a",
+        "c2": "#a3245c",
+        "c3": "#2a1f2e",
+        "c4": "#fbeee4",
+        "c5": "#fffaf3",
+        "head": "DM Serif Display",
+        "body": "Karla",
+        "radius": 14,
+        "c6": "#f2b33d",
+        "style": "retro"
+    }
+}

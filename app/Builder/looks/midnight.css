@@ -1,0 +1,32 @@
+/* Midnight: a dark site with neon accents. Here c5 is the dark page, c4 a
+   slightly lighter surface, c1 the darkest band, c3 the light text, and
+   c2 / c6 bright accents that carry dark (c5) text. */
+html{color-scheme:dark}
+.kb-header{background:color-mix(in srgb,var(--kb-c5) 75%,transparent);border-bottom-color:color-mix(in srgb,var(--kb-c3) 10%,transparent)}
+.kb-brand,nav[data-kb=menu] a{color:var(--kb-c3)}
+.kb-hero{color:var(--kb-c3);background:radial-gradient(60% 70% at 50% -10%,color-mix(in srgb,var(--kb-c2) 22%,transparent),transparent 70%),radial-gradient(40% 55% at 95% 90%,color-mix(in srgb,var(--kb-c6) 16%,transparent),transparent 70%),linear-gradient(color-mix(in srgb,var(--kb-c3) 5%,transparent) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,color-mix(in srgb,var(--kb-c3) 5%,transparent) 1px,transparent 1px) 0 0/48px 48px,var(--kb-c5);border-bottom:1px solid color-mix(in srgb,var(--kb-c3) 8%,transparent)}
+.kb-hero h1{letter-spacing:-.03em;background:linear-gradient(100deg,var(--kb-c3) 35%,var(--kb-c2) 75%,var(--kb-c6));-webkit-background-clip:text;background-clip:text;color:transparent}
+.kb-eyebrow{color:var(--kb-c2)}
+.kb-hero .kb-eyebrow,.kb-dark .kb-eyebrow{color:var(--kb-c2);opacity:1}
+.kb-section.kb-dark{background:var(--kb-c1);color:var(--kb-c3);border-block:1px solid color-mix(in srgb,var(--kb-c2) 25%,transparent)}
+.kb-btn{color:var(--kb-c5)}
+.kb-btn:not(.kb-ghost){background:linear-gradient(135deg,var(--kb-c2),var(--kb-c6));border-color:transparent;background-origin:border-box}
+.kb-btn:not(.kb-ghost):hover{box-shadow:0 0 28px color-mix(in srgb,var(--kb-c2) 45%,transparent)}
+.kb-btn.kb-ghost,.kb-hero .kb-btn.kb-ghost,.kb-dark .kb-btn.kb-ghost{color:var(--kb-c3);border-color:color-mix(in srgb,var(--kb-c3) 35%,transparent)}
+.kb-card{background:var(--kb-c4);color:var(--kb-c3);border:1px solid color-mix(in srgb,var(--kb-c3) 9%,transparent);box-shadow:none;transition:border-color .2s,box-shadow .2s}
+.kb-card:hover{border-color:color-mix(in srgb,var(--kb-c2) 55%,transparent);box-shadow:0 0 32px -8px color-mix(in srgb,var(--kb-c2) 35%,transparent)}
+.kb-section.kb-soft .kb-card{background:var(--kb-c5)}
+.kb-icon{background:color-mix(in srgb,var(--kb-c2) 14%,transparent);color:var(--kb-c2);box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--kb-c2) 35%,transparent)}
+.kb-step{background:linear-gradient(135deg,var(--kb-c2),var(--kb-c6));color:var(--kb-c5)}
+.kb-price .kb-amount,.kb-menu .kb-cost{color:var(--kb-c2)}
+.kb-price.kb-featured{outline:0;box-shadow:0 0 0 1px var(--kb-c2),0 0 40px -10px color-mix(in srgb,var(--kb-c2) 50%,transparent)}
+.kb-placeholder,.kb-photo,.kb-avatar{background:linear-gradient(135deg,color-mix(in srgb,var(--kb-c2) 22%,var(--kb-c4)),color-mix(in srgb,var(--kb-c6) 16%,var(--kb-c4)))}
+.kb-hero .kb-badges li,.kb-dark .kb-badges li{background:color-mix(in srgb,var(--kb-c3) 8%,transparent);border:1px solid color-mix(in srgb,var(--kb-c3) 12%,transparent)}
+.kb-dark .kb-soc,.kb-hero .kb-soc,.kb-footer .kb-soc{background:color-mix(in srgb,var(--kb-c3) 8%,transparent);color:var(--kb-c3)}
+.kb-soc:hover{color:var(--kb-c5)}
+.kb-footer{background:var(--kb-c1);color:color-mix(in srgb,var(--kb-c3) 75%,transparent);border-top:1px solid color-mix(in srgb,var(--kb-c3) 8%,transparent)}
+.kb-footer a,.kb-footer nav[data-kb=menu] a{color:var(--kb-c3)}
+.kb-credit{background:var(--kb-c1);color:color-mix(in srgb,var(--kb-c3) 65%,transparent);border-top-color:color-mix(in srgb,var(--kb-c3) 8%,transparent)}
+.kb-slider::scroll-button(left),.kb-slider::scroll-button(right){background:color-mix(in srgb,var(--kb-c4) 90%,transparent);color:var(--kb-c3)}
+.kb-slide::scroll-marker:target-current{background:var(--kb-c2)}
+.kb-list li::before{background:var(--kb-c2);box-shadow:0 0 10px var(--kb-c2)}

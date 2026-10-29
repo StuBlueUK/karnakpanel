@@ -1,0 +1,23 @@
+{
+    "name": "Orbit",
+    "for": "App launch",
+    "category": "Modern & bold",
+    "pages": [
+        "Home",
+        "Features",
+        "Pricing",
+        "Download"
+    ],
+    "theme": {
+        "c1": "#140c33",
+        "c2": "#6d28d9",
+        "c3": "#1c1530",
+        "c4": "#f6f2ff",
+        "c5": "#ffffff",
+        "head": "Plus Jakarta Sans",
+        "body": "Plus Jakarta Sans",
+        "radius": 16,
+        "c6": "#be185d",
+        "style": "aurora"
+    }
+}

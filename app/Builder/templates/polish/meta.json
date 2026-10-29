@@ -1,0 +1,21 @@
+{
+    "name": "Polish",
+    "for": "Nail & beauty studio",
+    "category": "Beauty & wellness",
+    "pages": [
+        "Home",
+        "Treatments",
+        "Gallery",
+        "Book"
+    ],
+    "theme": {
+        "c1": "#4a1d4f",
+        "c2": "#a21caf",
+        "c3": "#2a1630",
+        "c4": "#fbf0fb",
+        "c5": "#ffffff",
+        "head": "DM Serif Display",
+        "body": "DM Sans",
+        "radius": 24
+    }
+}

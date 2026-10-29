@@ -1,0 +1,28 @@
+/* Soft: pastel colour washes, pill buttons and badges, roomy rounded cards.
+   The hero is light (c1 heading, c3 text) washed with c2 and c6; c2 carries
+   white button text; dark bands stay c1 with page (c5) text. */
+.kb-header{background:color-mix(in srgb,var(--kb-c5) 85%,transparent);border-bottom:0;box-shadow:0 1px 0 color-mix(in srgb,var(--kb-c2) 12%,transparent)}
+.kb-hero{color:var(--kb-c3);background:radial-gradient(50% 70% at 10% 20%,color-mix(in srgb,var(--kb-c2) 22%,var(--kb-c4)),transparent 70%),radial-gradient(45% 65% at 90% 80%,color-mix(in srgb,var(--kb-c6) 22%,var(--kb-c4)),transparent 70%),var(--kb-c4)}
+.kb-hero h1{color:var(--kb-c1)}
+.kb-hero .kb-eyebrow{color:var(--kb-c1);background:var(--kb-c5);padding:.45em 1.1em;border-radius:999px;opacity:1}
+.kb-hero .kb-btn.kb-ghost{color:var(--kb-c1);border-color:currentColor;background:color-mix(in srgb,var(--kb-c5) 60%,transparent)}
+.kb-hero .kb-badges li{background:var(--kb-c5)}
+.kb-hero .kb-soc{background:var(--kb-c5);color:var(--kb-c2)}
+.kb-btn{border-radius:999px}
+.kb-btn:hover{box-shadow:0 10px 24px -6px color-mix(in srgb,var(--kb-c2) 45%,transparent)}
+.kb-section.kb-soft{background:linear-gradient(180deg,var(--kb-c4),color-mix(in srgb,var(--kb-c6) 10%,var(--kb-c4)))}
+.kb-section.kb-dark{background:linear-gradient(135deg,var(--kb-c1),color-mix(in srgb,var(--kb-c1) 80%,var(--kb-c2)))}
+.kb-card{border-radius:calc(var(--kb-radius) + 12px);box-shadow:0 14px 40px -18px color-mix(in srgb,var(--kb-c2) 40%,transparent)}
+.kb-icon,.kb-step{border-radius:999px}
+.kb-media,.kb-placeholder,.kb-photo{border-radius:calc(var(--kb-radius) + 16px)}
+.kb-gallery img,.kb-gallery .kb-placeholder,.kb-embed{border-radius:calc(var(--kb-radius) + 8px)}
+.kb-placeholder,.kb-photo,.kb-avatar{background:linear-gradient(135deg,color-mix(in srgb,var(--kb-c2) 30%,var(--kb-c4)),color-mix(in srgb,var(--kb-c6) 30%,var(--kb-c4)))}
+.kb-badges li{background:color-mix(in srgb,var(--kb-c6) 18%,var(--kb-c5))}
+.kb-price.kb-featured{outline:0;background:linear-gradient(160deg,color-mix(in srgb,var(--kb-c2) 14%,var(--kb-c5)),color-mix(in srgb,var(--kb-c6) 14%,var(--kb-c5)))}
+.kb-form input,.kb-form textarea{border-color:transparent;border-radius:calc(var(--kb-radius) + 6px);background:var(--kb-c4)}
+.kb-form input:focus,.kb-form textarea:focus{outline:2px solid color-mix(in srgb,var(--kb-c2) 60%,transparent);outline-offset:1px}
+.kb-faq{border:0;margin-bottom:10px;padding:1em 1.3em;border-radius:calc(var(--kb-radius) + 6px);background:var(--kb-c4)}
+.kb-soft .kb-faq{background:var(--kb-c5)}
+.kb-dark .kb-faq{background:color-mix(in srgb,var(--kb-c5) 10%,transparent)}
+.kb-list li::before,.kb-slide::scroll-marker:target-current{background:linear-gradient(135deg,var(--kb-c2),var(--kb-c6))}
+.kb-footer{border-radius:32px 32px 0 0}

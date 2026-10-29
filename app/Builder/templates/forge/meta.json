@@ -1,0 +1,21 @@
+{
+    "name": "Forge",
+    "for": "Builder & construction",
+    "category": "Home & trades",
+    "pages": [
+        "Home",
+        "Projects",
+        "About",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#292524",
+        "c2": "#9a3412",
+        "c3": "#1c1917",
+        "c4": "#f5f2ee",
+        "c5": "#ffffff",
+        "head": "Oswald",
+        "body": "Inter",
+        "radius": 2
+    }
+}

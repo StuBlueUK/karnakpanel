@@ -1,0 +1,21 @@
+{
+    "name": "Counsel",
+    "for": "Solicitors & law firm",
+    "category": "Business & professional",
+    "pages": [
+        "Home",
+        "Services",
+        "Team",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#1b1f3b",
+        "c2": "#7c2d12",
+        "c3": "#1f2937",
+        "c4": "#f5f3f0",
+        "c5": "#ffffff",
+        "head": "Playfair Display",
+        "body": "Lato",
+        "radius": 4
+    }
+}

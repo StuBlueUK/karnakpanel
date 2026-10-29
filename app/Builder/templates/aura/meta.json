@@ -1,0 +1,21 @@
+{
+    "name": "Aura",
+    "for": "Hair salon",
+    "category": "Beauty & wellness",
+    "pages": [
+        "Home",
+        "Prices",
+        "Team",
+        "Book"
+    ],
+    "theme": {
+        "c1": "#3f2a33",
+        "c2": "#9d4a63",
+        "c3": "#2b2024",
+        "c4": "#f8eff1",
+        "c5": "#fffdfc",
+        "head": "Cormorant",
+        "body": "Karla",
+        "radius": 18
+    }
+}

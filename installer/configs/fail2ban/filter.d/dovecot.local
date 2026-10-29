@@ -1,0 +1,7 @@
+# Dovecot 2.4 (Debian 13+) logs auth failures as "Login aborted: <reason>
+# (auth failed, N attempts in S secs) (auth_failed): user=<..>, method=..,
+# rip=.." — the stock filter only knows 2.3's "Aborted login (...)". Extends
+# (never replaces) the stock failregex, so 2.3 boxes match exactly as before.
+[Definition]
+failregex = %(known/failregex)s
+            ^Login aborted: [^\(]*\(auth failed, \d+ attempts(?: in \d+ secs)?\) \(auth_failed\):(?: user=<<F-USER>[^>]*</F-USER>>,)?(?: method=\S+,)? rip=<HOST>(?:,|\s*$)

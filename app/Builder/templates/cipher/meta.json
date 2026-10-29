@@ -1,0 +1,22 @@
+{
+    "name": "Cipher",
+    "for": "Cyber security",
+    "category": "Modern & bold",
+    "pages": [
+        "Home",
+        "Services",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#030807",
+        "c2": "#34d399",
+        "c3": "#e6f1ee",
+        "c4": "#0f1a17",
+        "c5": "#08110f",
+        "head": "Space Grotesk",
+        "body": "Inter",
+        "radius": 8,
+        "c6": "#38bdf8",
+        "style": "midnight"
+    }
+}

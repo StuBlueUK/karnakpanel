@@ -1,0 +1,21 @@
+{
+    "name": "Folio",
+    "for": "Designer portfolio",
+    "category": "Creative & events",
+    "pages": [
+        "Home",
+        "Work",
+        "About",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#222222",
+        "c2": "#be123c",
+        "c3": "#1a1a1a",
+        "c4": "#f4f4f4",
+        "c5": "#ffffff",
+        "head": "Space Grotesk",
+        "body": "Inter",
+        "radius": 6
+    }
+}

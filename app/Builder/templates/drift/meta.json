@@ -1,0 +1,22 @@
+{
+    "name": "Drift",
+    "for": "Surf school & watersports",
+    "category": "Travel & stays",
+    "pages": [
+        "Home",
+        "Lessons",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#12453f",
+        "c2": "#0f766e",
+        "c3": "#1d3b37",
+        "c4": "#eefaf6",
+        "c5": "#ffffff",
+        "head": "Plus Jakarta Sans",
+        "body": "Karla",
+        "radius": 16,
+        "c6": "#f2a65a",
+        "style": "soft"
+    }
+}

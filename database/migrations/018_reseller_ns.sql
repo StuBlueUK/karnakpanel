@@ -1,0 +1,3 @@
+-- 018: white-label nameservers per reseller
+ALTER TABLE users ADD COLUMN IF NOT EXISTS ns1 VARCHAR(190) NULL;
+ALTER TABLE users ADD COLUMN IF NOT EXISTS ns2 VARCHAR(190) NULL;

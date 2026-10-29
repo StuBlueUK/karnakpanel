@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# karnakpanel CLI — admin helper (`skypanel` still works as an alias)
+set -euo pipefail
+CMD="${1:-help}"
+case "$CMD" in
+  create-account) /usr/local/skypanel/scripts/create-account.sh "${@:2}" ;;
+  suspend|unsuspend) /usr/local/skypanel/scripts/suspend-account.sh "$2" "$CMD" ;;
+  php-switch) /usr/local/skypanel/scripts/php-switch.sh "$2" "$3" ;;
+  backup) /usr/local/skypanel/scripts/backup-account.sh "$2" ;;
+  ssl) /usr/local/skypanel/scripts/ssl-issue.sh "$2" "${3:-admin@localhost}" ;;
+  ssh-key)
+    U="$2"; KEY="${3:-}"
+    mkdir -p "/home/$U/.ssh"; echo "$KEY" >> "/home/$U/.ssh/authorized_keys"
+    chown -R "$U:$U" "/home/$U/.ssh"; chmod 700 "/home/$U/.ssh"; chmod 600 "/home/$U/.ssh/authorized_keys"
+    echo "key added for $U" ;;
+  rotate-db-creds) bash "$(dirname "$(readlink -f "$0")")/rotate-db-creds.sh" ;;
+  services) systemctl --no-pager status lsws mariadb bind9 dovecot exim4 vsftpd fail2ban spamassassin cron ssh || true ;;
+  *) echo "Usage: karnakpanel {create-account|suspend|unsuspend|php-switch|backup|ssl|ssh-key|services|rotate-db-creds}";;
+esac

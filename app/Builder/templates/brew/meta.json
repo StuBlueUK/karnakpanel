@@ -1,0 +1,20 @@
+{
+    "name": "Brew",
+    "for": "Café & coffee shop",
+    "category": "Food & drink",
+    "pages": [
+        "Home",
+        "Menu",
+        "Visit"
+    ],
+    "theme": {
+        "c1": "#3e2a1e",
+        "c2": "#8a5a2b",
+        "c3": "#2d241f",
+        "c4": "#f3ebe1",
+        "c5": "#fffdf9",
+        "head": "DM Serif Display",
+        "body": "DM Sans",
+        "radius": 14
+    }
+}

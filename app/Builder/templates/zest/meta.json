@@ -1,0 +1,22 @@
+{
+    "name": "Zest",
+    "for": "Street food truck",
+    "category": "Modern & bold",
+    "pages": [
+        "Home",
+        "Find us",
+        "Book"
+    ],
+    "theme": {
+        "c1": "#111111",
+        "c2": "#15803d",
+        "c3": "#111111",
+        "c4": "#f7fee7",
+        "c5": "#ffffff",
+        "head": "Archivo",
+        "body": "Inter",
+        "radius": 0,
+        "c6": "#a3e635",
+        "style": "bold"
+    }
+}

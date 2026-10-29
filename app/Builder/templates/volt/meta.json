@@ -1,0 +1,21 @@
+{
+    "name": "Volt",
+    "for": "Electrician",
+    "category": "Home & trades",
+    "pages": [
+        "Home",
+        "Services",
+        "About",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#1a1a2e",
+        "c2": "#8a5208",
+        "c3": "#1f2937",
+        "c4": "#f7f5ee",
+        "c5": "#ffffff",
+        "head": "Archivo",
+        "body": "Inter",
+        "radius": 6
+    }
+}

@@ -1,0 +1,20 @@
+{
+    "name": "Ridge",
+    "for": "Roofer & roofing contractor",
+    "category": "Home & trades",
+    "pages": [
+        "Home",
+        "Services",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#1c2833",
+        "c2": "#b42318",
+        "c3": "#1f2933",
+        "c4": "#f5f3f1",
+        "c5": "#ffffff",
+        "head": "Oswald",
+        "body": "Lato",
+        "radius": 6
+    }
+}
