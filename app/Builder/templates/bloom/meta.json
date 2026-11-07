@@ -1,0 +1,20 @@
+{
+    "name": "Bloom",
+    "for": "Florist",
+    "category": "Creative & events",
+    "pages": [
+        "Home",
+        "Order",
+        "Weddings"
+    ],
+    "theme": {
+        "c1": "#2d3b2a",
+        "c2": "#be185d",
+        "c3": "#22291f",
+        "c4": "#f7f1f2",
+        "c5": "#fffdfd",
+        "head": "Playfair Display",
+        "body": "Karla",
+        "radius": 20
+    }
+}

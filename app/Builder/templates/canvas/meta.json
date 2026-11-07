@@ -1,0 +1,22 @@
+{
+    "name": "Canvas",
+    "for": "Art gallery & artist",
+    "category": "Creative & events",
+    "pages": [
+        "Home",
+        "Exhibitions",
+        "Visit"
+    ],
+    "theme": {
+        "c1": "#1e2a3a",
+        "c2": "#7a2e8a",
+        "c3": "#1f2933",
+        "c4": "#f2eff4",
+        "c5": "#ffffff",
+        "head": "Cormorant",
+        "body": "DM Sans",
+        "radius": 0,
+        "c6": "#7a2e8a",
+        "style": "editorial"
+    }
+}

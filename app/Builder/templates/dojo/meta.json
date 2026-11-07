@@ -1,0 +1,20 @@
+{
+    "name": "Dojo",
+    "for": "Martial arts club",
+    "category": "Health & fitness",
+    "pages": [
+        "Home",
+        "Classes",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#1c1917",
+        "c2": "#b91c1c",
+        "c3": "#1c1917",
+        "c4": "#f7f3ef",
+        "c5": "#ffffff",
+        "head": "Archivo",
+        "body": "Inter",
+        "radius": 4
+    }
+}

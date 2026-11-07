@@ -1,0 +1,21 @@
+{
+    "name": "Bright",
+    "for": "Tutor & education",
+    "category": "Community & education",
+    "pages": [
+        "Home",
+        "Subjects",
+        "Prices",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#1e3a8a",
+        "c2": "#b4400b",
+        "c3": "#1e293b",
+        "c4": "#f2f5fd",
+        "c5": "#ffffff",
+        "head": "Nunito",
+        "body": "Nunito",
+        "radius": 18
+    }
+}

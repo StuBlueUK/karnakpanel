@@ -1,0 +1,22 @@
+{
+    "name": "Scoop",
+    "for": "Ice cream & desserts",
+    "category": "Modern & bold",
+    "pages": [
+        "Home",
+        "Flavours",
+        "Visit"
+    ],
+    "theme": {
+        "c1": "#3b0a2a",
+        "c2": "#be185d",
+        "c3": "#1a1a1a",
+        "c4": "#fff1f6",
+        "c5": "#fffaf2",
+        "head": "Archivo",
+        "body": "Karla",
+        "radius": 14,
+        "c6": "#fcd34d",
+        "style": "bold"
+    }
+}

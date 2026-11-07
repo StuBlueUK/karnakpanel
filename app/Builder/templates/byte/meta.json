@@ -1,0 +1,22 @@
+{
+    "name": "Byte",
+    "for": "Phone & computer repairs",
+    "category": "Tech & startups",
+    "pages": [
+        "Home",
+        "Prices",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#111827",
+        "c2": "#c2410c",
+        "c3": "#1f2937",
+        "c4": "#fff7ed",
+        "c5": "#ffffff",
+        "head": "Space Grotesk",
+        "body": "Inter",
+        "radius": 10,
+        "c6": "#fcd34d",
+        "style": "bold"
+    }
+}

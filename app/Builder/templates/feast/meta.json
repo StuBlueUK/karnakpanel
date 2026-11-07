@@ -1,0 +1,21 @@
+{
+    "name": "Feast",
+    "for": "Catering & private chef",
+    "category": "Food & drink",
+    "pages": [
+        "Home",
+        "Menus",
+        "About",
+        "Enquire"
+    ],
+    "theme": {
+        "c1": "#1e293b",
+        "c2": "#a14a0b",
+        "c3": "#1f2937",
+        "c4": "#f8f5ef",
+        "c5": "#ffffff",
+        "head": "DM Serif Display",
+        "body": "Manrope",
+        "radius": 12
+    }
+}

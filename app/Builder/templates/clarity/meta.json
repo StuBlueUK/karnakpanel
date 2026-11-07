@@ -1,0 +1,20 @@
+{
+    "name": "Clarity",
+    "for": "Opticians",
+    "category": "Health & fitness",
+    "pages": [
+        "Home",
+        "Services",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#0c3547",
+        "c2": "#0369a1",
+        "c3": "#163040",
+        "c4": "#eef7fb",
+        "c5": "#ffffff",
+        "head": "Manrope",
+        "body": "Inter",
+        "radius": 14
+    }
+}

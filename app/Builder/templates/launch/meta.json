@@ -1,0 +1,21 @@
+{
+    "name": "Launch",
+    "for": "Software & app",
+    "category": "Tech & startups",
+    "pages": [
+        "Home",
+        "Features",
+        "Pricing",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#1e1b4b",
+        "c2": "#4f46e5",
+        "c3": "#1e1b2e",
+        "c4": "#f3f4ff",
+        "c5": "#ffffff",
+        "head": "Plus Jakarta Sans",
+        "body": "Plus Jakarta Sans",
+        "radius": 14
+    }
+}

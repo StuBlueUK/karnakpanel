@@ -1,0 +1,24 @@
+/* Vivid: full-colour gradient hero with a slanted edge, gradient bands and
+   buttons, tinted floating cards. c1 -> c2 -> c6 all carry white text. */
+.kb-hero{background:linear-gradient(120deg,var(--kb-c1),var(--kb-c2) 55%,var(--kb-c6));clip-path:polygon(0 0,100% 0,100% calc(100% - 4vw),0 100%);padding-bottom:calc(clamp(72px,12vw,150px) + 4vw)}
+.kb-hero h1{letter-spacing:-.03em;font-weight:800}
+.kb-hero .kb-btn:not(.kb-ghost){background:var(--kb-c5);color:var(--kb-c1);border-color:var(--kb-c5)}
+.kb-hero .kb-btn:not(.kb-ghost):hover{box-shadow:0 12px 30px rgba(0,0,0,.25)}
+.kb-section.kb-dark{background:linear-gradient(120deg,var(--kb-c1),var(--kb-c2) 70%,var(--kb-c6))}
+.kb-section.kb-dark .kb-btn:not(.kb-ghost){background:var(--kb-c5);color:var(--kb-c1);border-color:var(--kb-c5)}
+.kb-btn:not(.kb-ghost){background:linear-gradient(120deg,var(--kb-c2),var(--kb-c6));border-color:transparent;background-origin:border-box}
+.kb-eyebrow{background:linear-gradient(90deg,var(--kb-c2),var(--kb-c6));-webkit-background-clip:text;background-clip:text;color:transparent}
+.kb-hero .kb-eyebrow,.kb-dark .kb-eyebrow{background:none;color:inherit}
+.kb-price .kb-amount{background:linear-gradient(90deg,var(--kb-c1),var(--kb-c2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.kb-card{box-shadow:0 24px 50px -24px color-mix(in srgb,var(--kb-c2) 50%,transparent),0 2px 6px rgba(15,23,42,.05);transition:transform .2s}
+.kb-card:hover{transform:translateY(-4px)}
+.kb-icon,.kb-step{background:linear-gradient(135deg,var(--kb-c2),var(--kb-c6));color:#fff}
+.kb-placeholder,.kb-photo,.kb-avatar{background:linear-gradient(135deg,color-mix(in srgb,var(--kb-c2) 45%,var(--kb-c4)),color-mix(in srgb,var(--kb-c6) 35%,var(--kb-c4)))}
+.kb-price.kb-featured{outline:0;background:linear-gradient(160deg,var(--kb-c2),var(--kb-c6));color:#fff}
+.kb-price.kb-featured .kb-amount{background:none;color:#fff}
+.kb-price.kb-featured li{border-bottom-color:rgba(255,255,255,.25)}
+.kb-price.kb-featured li::before{color:#fff}
+.kb-price.kb-featured .kb-btn{background:var(--kb-c5);color:var(--kb-c1);border-color:var(--kb-c5)}
+.kb-list li::before,.kb-slide::scroll-marker:target-current{background:linear-gradient(135deg,var(--kb-c2),var(--kb-c6))}
+.kb-footer{background:linear-gradient(160deg,var(--kb-c1),color-mix(in srgb,var(--kb-c1) 75%,var(--kb-c2)))}
+.kb-soc:hover{background:linear-gradient(135deg,var(--kb-c2),var(--kb-c6))}

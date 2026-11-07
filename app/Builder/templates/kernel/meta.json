@@ -1,0 +1,20 @@
+{
+    "name": "Kernel",
+    "for": "IT support for businesses",
+    "category": "Tech & startups",
+    "pages": [
+        "Home",
+        "Services",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#12263a",
+        "c2": "#0f766e",
+        "c3": "#1f2933",
+        "c4": "#eef6f5",
+        "c5": "#ffffff",
+        "head": "Archivo",
+        "body": "Inter",
+        "radius": 8
+    }
+}

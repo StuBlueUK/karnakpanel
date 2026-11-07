@@ -1,0 +1,21 @@
+{
+    "name": "Grove",
+    "for": "Gardener & landscaper",
+    "category": "Home & trades",
+    "pages": [
+        "Home",
+        "Portfolio",
+        "Maintenance",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#1a3a1f",
+        "c2": "#2f6b22",
+        "c3": "#1f2a1f",
+        "c4": "#f0f6ec",
+        "c5": "#fdfefb",
+        "head": "Manrope",
+        "body": "Lato",
+        "radius": 14
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "name": "Smile",
+    "for": "Dental practice",
+    "category": "Health & fitness",
+    "pages": [
+        "Home",
+        "Treatments",
+        "Team",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#0b3b5c",
+        "c2": "#0f766e",
+        "c3": "#1e293b",
+        "c4": "#eef7f7",
+        "c5": "#ffffff",
+        "head": "Plus Jakarta Sans",
+        "body": "Inter",
+        "radius": 16
+    }
+}

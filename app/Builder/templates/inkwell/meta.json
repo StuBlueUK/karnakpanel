@@ -1,0 +1,21 @@
+{
+    "name": "Inkwell",
+    "for": "Tattoo studio",
+    "category": "Beauty & wellness",
+    "pages": [
+        "Home",
+        "Artists",
+        "Aftercare",
+        "Booking"
+    ],
+    "theme": {
+        "c1": "#0c0c0c",
+        "c2": "#9f1239",
+        "c3": "#1a1a1a",
+        "c4": "#f3f1ee",
+        "c5": "#ffffff",
+        "head": "Oswald",
+        "body": "Archivo",
+        "radius": 2
+    }
+}

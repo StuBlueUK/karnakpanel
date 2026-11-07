@@ -1,0 +1,20 @@
+{
+    "name": "Nimbus",
+    "for": "Web hosting company",
+    "category": "Tech & startups",
+    "pages": [
+        "Home",
+        "Plans",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#0b2545",
+        "c2": "#1565c0",
+        "c3": "#102a43",
+        "c4": "#eef4fb",
+        "c5": "#ffffff",
+        "head": "Plus Jakarta Sans",
+        "body": "Inter",
+        "radius": 12
+    }
+}

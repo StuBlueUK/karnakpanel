@@ -1,0 +1,74 @@
+#!/usr/bin/env bash
+# wp-autoupdate.sh <on|off|status> <docroot> — WordPress auto-update policy
+# without wp-cli: a must-use plugin (plugins+translations auto, themes stay
+# manual) + WP_AUTO_UPDATE_CORE=minor in wp-config.php (security releases
+# only — major versions never auto). Content, uploads, DB and wp-config
+# itself are never touched by updates; toggling off removes the mu-plugin
+# and pins core updates to false. Refuses non-WordPress dirs.
+set -euo pipefail
+. "$(dirname "$(readlink -f "$0")")/as-user.sh"
+MODE="${1:?on|off|status}"; DOC="${2:?docroot}"
+[[ "$MODE" =~ ^(on|off|status)$ ]] || { echo "bad mode"; exit 1; }
+# the panel builds /home/<user>/<domain>/public_html[/<sub>]: the owner is
+# taken from THAT path (never resolved, never stat'd — a link or a root-owned
+# dir must not pick who we act as) and every file op below runs as them, so
+# a planted wp-config.php -> /etc/... link only reaches what they could write
+[[ "$DOC" =~ ^/home/([a-z][a-z0-9_]{2,31})/[a-z0-9.-]+\.[a-z]{2,}/public_html(/[a-zA-Z0-9_-]{1,64})?$ && "$DOC" != *..* ]] || { echo "docroot outside homes"; exit 1; }
+U="${BASH_REMATCH[1]}"
+[[ "$(id -u "$U" 2>/dev/null || echo 0)" -ge 1000 ]] || { echo "bad owner"; exit 1; }
+REAL="$DOC"
+as_user "$U" test -f "$REAL/wp-config.php" -a -d "$REAL/wp-content" || { echo "not a WordPress install: $REAL"; exit 1; }
+MU="$REAL/wp-content/mu-plugins/karnakpanel-autoupdate.php"
+is_on() {
+  as_user "$U" test -f "$MU" && as_user "$U" cat -- "$REAL/wp-config.php" | grep -q "define( *'WP_AUTO_UPDATE_CORE', *'minor'"
+}
+if [[ "$MODE" == "status" ]]; then
+  is_on && echo on || echo off
+  exit 0
+fi
+if [[ "$MODE" == "on" ]]; then
+  as_user "$U" cp -p -- "$REAL/wp-config.php" "$REAL/wp-config.php.bak-karnakpanel" || { echo "cannot back up wp-config.php"; exit 1; }
+  as_user "$U" python3 -I - "$REAL/wp-config.php" <<'PYEOF'
+import re, sys
+p = sys.argv[1]
+src = open(p).read()
+line = "define( 'WP_AUTO_UPDATE_CORE', 'minor' );"
+if re.search(r"define\s*\(\s*'WP_AUTO_UPDATE_CORE'", src):
+    # swallow stray trailing semicolons too, or every re-apply appends one
+    src = re.sub(r"define\s*\(\s*'WP_AUTO_UPDATE_CORE'\s*,\s*[^)]+\)\s*;*", line, src)
+elif "stop editing" in src:
+    src = src.replace("/* That's all, stop editing!", line + "\n\n/* That's all, stop editing!", 1)
+else:
+    src = src.rstrip() + "\n" + line + "\n"
+open(p, 'w').write(src)
+PYEOF
+  as_user "$U" mkdir -p -- "$REAL/wp-content/mu-plugins" || { echo "cannot create mu-plugins"; exit 1; }
+  user_put "$U" "$MU" 644 <<'PHEOF' || { echo "mu-plugin write failed"; exit 1; }
+<?php
+// KarnakPanel auto-update policy (managed from the panel Software page —
+// do not hand-edit; the toggle rewrites this file). Minor core releases,
+// plugins and translations update themselves; themes and major versions
+// stay manual so a big change never lands unreviewed.
+add_filter( 'auto_update_plugin', '__return_true' );
+add_filter( 'auto_update_theme', '__return_false' );
+add_filter( 'auto_update_translation', '__return_true' );
+PHEOF
+  echo "auto-updates ON (minor core + plugins; themes + majors stay manual)"
+else
+  as_user "$U" rm -f -- "$MU"
+  as_user "$U" python3 -I - "$REAL/wp-config.php" <<'PYEOF'
+import re, sys
+p = sys.argv[1]
+src = open(p).read()
+line = "define( 'WP_AUTO_UPDATE_CORE', false );"
+if re.search(r"define\s*\(\s*'WP_AUTO_UPDATE_CORE'", src):
+    src = re.sub(r"define\s*\(\s*'WP_AUTO_UPDATE_CORE'\s*,\s*[^)]+\)\s*;*", line, src)
+elif "stop editing" in src:
+    # WP auto-updates minor cores even with NO constant — off must say so
+    src = src.replace("/* That's all, stop editing!", line + "\n\n/* That's all, stop editing!", 1)
+else:
+    src = src.rstrip() + "\n" + line + "\n"
+open(p, 'w').write(src)
+PYEOF
+  echo "auto-updates OFF (core pinned, mu-plugin removed)"
+fi

@@ -1,0 +1,22 @@
+{
+    "name": "Cycle",
+    "for": "Bike shop & repairs",
+    "category": "Shops & retail",
+    "pages": [
+        "Home",
+        "Workshop",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#1f3b4d",
+        "c2": "#b8410e",
+        "c3": "#1c2830",
+        "c4": "#eef4f1",
+        "c5": "#fdfbf4",
+        "head": "Oswald",
+        "body": "Karla",
+        "radius": 10,
+        "c6": "#f2c14e",
+        "style": "retro"
+    }
+}

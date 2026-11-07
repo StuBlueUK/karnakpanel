@@ -1,0 +1,23 @@
+{
+    "name": "Halo",
+    "for": "Aesthetics clinic",
+    "category": "Modern & bold",
+    "pages": [
+        "Home",
+        "Treatments",
+        "About",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#3b0d2c",
+        "c2": "#9d174d",
+        "c3": "#2a1424",
+        "c4": "#fdf2f8",
+        "c5": "#fffbfd",
+        "head": "Cormorant",
+        "body": "Karla",
+        "radius": 22,
+        "c6": "#7e22ce",
+        "style": "glass"
+    }
+}

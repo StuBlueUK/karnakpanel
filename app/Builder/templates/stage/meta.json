@@ -1,0 +1,22 @@
+{
+    "name": "Stage",
+    "for": "Theatre & drama group",
+    "category": "Creative & events",
+    "pages": [
+        "Home",
+        "Shows",
+        "Join"
+    ],
+    "theme": {
+        "c1": "#08080a",
+        "c2": "#c9a24b",
+        "c3": "#ece7dc",
+        "c4": "#17161a",
+        "c5": "#0f0e11",
+        "head": "Cormorant",
+        "body": "Manrope",
+        "radius": 2,
+        "c6": "#e9d29a",
+        "style": "luxe"
+    }
+}

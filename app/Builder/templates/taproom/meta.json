@@ -1,0 +1,21 @@
+{
+    "name": "Taproom",
+    "for": "Pub & bar",
+    "category": "Food & drink",
+    "pages": [
+        "Home",
+        "Food",
+        "Drinks",
+        "Visit"
+    ],
+    "theme": {
+        "c1": "#1f2a24",
+        "c2": "#8a5208",
+        "c3": "#1f2421",
+        "c4": "#f2efe6",
+        "c5": "#fffdf8",
+        "head": "Playfair Display",
+        "body": "Lato",
+        "radius": 6
+    }
+}

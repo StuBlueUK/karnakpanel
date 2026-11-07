@@ -1,0 +1,21 @@
+{
+    "name": "Fade",
+    "for": "Barber shop",
+    "category": "Beauty & wellness",
+    "pages": [
+        "Home",
+        "Services",
+        "Barbers",
+        "Book"
+    ],
+    "theme": {
+        "c1": "#111111",
+        "c2": "#b91c1c",
+        "c3": "#18181b",
+        "c4": "#f4f4f5",
+        "c5": "#ffffff",
+        "head": "Oswald",
+        "body": "Inter",
+        "radius": 4
+    }
+}

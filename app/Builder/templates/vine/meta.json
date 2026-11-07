@@ -1,0 +1,22 @@
+{
+    "name": "Vine",
+    "for": "Wine bar & bottle shop",
+    "category": "Food & drink",
+    "pages": [
+        "Home",
+        "Menu",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#0d0709",
+        "c2": "#c99a5b",
+        "c3": "#efe6df",
+        "c4": "#1d1216",
+        "c5": "#140c0f",
+        "head": "Playfair Display",
+        "body": "Manrope",
+        "radius": 2,
+        "c6": "#e8c9a0",
+        "style": "luxe"
+    }
+}

@@ -1,0 +1,22 @@
+{
+    "name": "Anchor",
+    "for": "Financial adviser",
+    "category": "Business",
+    "pages": [
+        "Home",
+        "Services",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#04140f",
+        "c2": "#d4b06a",
+        "c3": "#e8efe9",
+        "c4": "#10261f",
+        "c5": "#0a1b16",
+        "head": "Playfair Display",
+        "body": "Inter",
+        "radius": 4,
+        "c6": "#f0dca8",
+        "style": "luxe"
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "name": "Stay",
+    "for": "B&B & guest house",
+    "category": "Travel & stays",
+    "pages": [
+        "Home",
+        "Rooms",
+        "Area",
+        "Book"
+    ],
+    "theme": {
+        "c1": "#24394a",
+        "c2": "#8a5a2b",
+        "c3": "#22303a",
+        "c4": "#f6f1ea",
+        "c5": "#fffdf9",
+        "head": "Cormorant",
+        "body": "Lato",
+        "radius": 12
+    }
+}

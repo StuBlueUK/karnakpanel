@@ -1,0 +1,21 @@
+{
+    "name": "Encore",
+    "for": "Band & musician",
+    "category": "Creative & events",
+    "pages": [
+        "Home",
+        "Tour",
+        "Music",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#1a103d",
+        "c2": "#a21caf",
+        "c3": "#1e1b2e",
+        "c4": "#f6f2fb",
+        "c5": "#ffffff",
+        "head": "Oswald",
+        "body": "DM Sans",
+        "radius": 8
+    }
+}

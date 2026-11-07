@@ -1,0 +1,21 @@
+{
+    "name": "Torque",
+    "for": "Car garage & MOT centre",
+    "category": "Home & trades",
+    "pages": [
+        "Home",
+        "Prices",
+        "About",
+        "Book"
+    ],
+    "theme": {
+        "c1": "#111827",
+        "c2": "#1d4ed8",
+        "c3": "#111827",
+        "c4": "#f1f5f9",
+        "c5": "#ffffff",
+        "head": "Oswald",
+        "body": "Inter",
+        "radius": 6
+    }
+}

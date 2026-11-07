@@ -1,0 +1,21 @@
+{
+    "name": "Ember",
+    "for": "Restaurant",
+    "category": "Food & drink",
+    "pages": [
+        "Home",
+        "Menu",
+        "Gallery",
+        "Book"
+    ],
+    "theme": {
+        "c1": "#2b1d16",
+        "c2": "#b4471b",
+        "c3": "#2a211c",
+        "c4": "#f7efe6",
+        "c5": "#fffaf4",
+        "head": "Playfair Display",
+        "body": "Lato",
+        "radius": 10
+    }
+}
