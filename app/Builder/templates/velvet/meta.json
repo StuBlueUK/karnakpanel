@@ -1,0 +1,22 @@
+{
+    "name": "Velvet",
+    "for": "Bridal hair & make-up artist",
+    "category": "Beauty",
+    "pages": [
+        "Home",
+        "Bridal",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#4a2a3a",
+        "c2": "#a8325e",
+        "c3": "#3b2a33",
+        "c4": "#fbf1f3",
+        "c5": "#ffffff",
+        "head": "Playfair Display",
+        "body": "Nunito",
+        "radius": 18,
+        "c6": "#b07ae0",
+        "style": "soft"
+    }
+}

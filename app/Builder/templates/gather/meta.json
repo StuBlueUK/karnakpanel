@@ -1,0 +1,21 @@
+{
+    "name": "Gather",
+    "for": "Wedding & event planner",
+    "category": "Creative & events",
+    "pages": [
+        "Home",
+        "Services",
+        "Gallery",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#1f2340",
+        "c2": "#9f4b6a",
+        "c3": "#25222e",
+        "c4": "#f9f2f4",
+        "c5": "#ffffff",
+        "head": "DM Serif Display",
+        "body": "DM Sans",
+        "radius": 18
+    }
+}

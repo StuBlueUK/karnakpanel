@@ -1,0 +1,21 @@
+{
+    "name": "Calm",
+    "for": "Counsellor & therapist",
+    "category": "Health & fitness",
+    "pages": [
+        "Home",
+        "Approach",
+        "About",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#2f3e46",
+        "c2": "#4a6f62",
+        "c3": "#263238",
+        "c4": "#f1f5f2",
+        "c5": "#fcfcfa",
+        "head": "Cormorant",
+        "body": "Karla",
+        "radius": 14
+    }
+}

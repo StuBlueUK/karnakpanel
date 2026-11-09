@@ -1,0 +1,8 @@
+<?php // No-PHP-in-uploads card (?noexec=id) — shared by the Domains and Subdomains tabs. ?>
+<?php if(!empty($nxdom)):?><div class="card"><h3>📂 No PHP in upload folders — <?=Helpers::e($nxdom['domain'])?> <small style="color:var(--muted)">a PHP file planted in an upload folder is the usual webshell; this answers 403 instead of running it</small></h3>
+<form method="post" action="/domains/noexec"><input type="hidden" name="csrf" value="<?=Helpers::csrf()?>"><input type="hidden" name="id" value="<?=$nxdom['id']?>"><input type="hidden" name="tab" value="<?=Helpers::e($tab ?? 'domains')?>">
+<label><input type="checkbox" name="noexec" value="1" <?=!empty($nxdom['noexec'])?'checked':''?>> <b>Block PHP in upload folders</b> <small style="color:var(--muted)">.php, .phtml, .phar and similar files return 403 under <code>wp-content/uploads</code> (also in subfolder installs), Drupal <code>sites/*/files</code> and <code>.well-known</code>. Images and other files are still served. PHP elsewhere on the site is not affected.</small></label><br>
+<label><b>Extra folders</b> <small style="color:var(--muted)">one per line, relative to the site root, e.g. <code>images/uploads</code>. Covers everything below each folder. Up to 10.</small><br>
+<textarea name="paths" rows="3" style="width:100%;max-width:32em" placeholder="images/uploads"><?=Helpers::e(str_replace(',', "\n", (string)($nxdom['noexec_paths'] ?? '')))?></textarea></label><br>
+<small style="color:var(--muted)">If a plugin really needs to run PHP inside one of these folders, it stops working while this is on.</small><br>
+<button class="btn">Save &amp; apply</button></form></div><?php endif;?>

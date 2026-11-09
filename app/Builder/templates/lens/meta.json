@@ -1,0 +1,22 @@
+{
+    "name": "Lens",
+    "for": "Photographer",
+    "category": "Creative & events",
+    "pages": [
+        "Home",
+        "Portfolio",
+        "Packages",
+        "About",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#1c1c1c",
+        "c2": "#8a5a2b",
+        "c3": "#1f1f1f",
+        "c4": "#f5f2ee",
+        "c5": "#ffffff",
+        "head": "Cormorant",
+        "body": "Lato",
+        "radius": 0
+    }
+}

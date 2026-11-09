@@ -1,0 +1,22 @@
+{
+    "name": "Scholar",
+    "for": "Music teacher & lessons",
+    "category": "Community & education",
+    "pages": [
+        "Home",
+        "Lessons",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#4a2a5a",
+        "c2": "#b0306b",
+        "c3": "#3b2f45",
+        "c4": "#fbf1f6",
+        "c5": "#ffffff",
+        "head": "Nunito",
+        "body": "Nunito",
+        "radius": 18,
+        "c6": "#8b7ce0",
+        "style": "soft"
+    }
+}

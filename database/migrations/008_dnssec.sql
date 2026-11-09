@@ -1,0 +1,2 @@
+-- 008: DNSSEC flag per domain
+ALTER TABLE domains ADD COLUMN IF NOT EXISTS dnssec TINYINT(1) NOT NULL DEFAULT 0;

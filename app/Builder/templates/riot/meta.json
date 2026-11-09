@@ -1,0 +1,23 @@
+{
+    "name": "Riot",
+    "for": "Music festival & events",
+    "category": "Modern & bold",
+    "pages": [
+        "Home",
+        "Line-up",
+        "Tickets",
+        "Info"
+    ],
+    "theme": {
+        "c1": "#1a0b2e",
+        "c2": "#be123c",
+        "c3": "#1b1020",
+        "c4": "#fff5f7",
+        "c5": "#ffffff",
+        "head": "Oswald",
+        "body": "DM Sans",
+        "radius": 6,
+        "c6": "#6d28d9",
+        "style": "vivid"
+    }
+}

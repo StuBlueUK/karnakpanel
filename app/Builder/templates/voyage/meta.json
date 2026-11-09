@@ -1,0 +1,23 @@
+{
+    "name": "Voyage",
+    "for": "Travel agency",
+    "category": "Modern & bold",
+    "pages": [
+        "Home",
+        "Destinations",
+        "About",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#0b2540",
+        "c2": "#075985",
+        "c3": "#10243a",
+        "c4": "#eef7fb",
+        "c5": "#ffffff",
+        "head": "DM Serif Display",
+        "body": "DM Sans",
+        "radius": 20,
+        "c6": "#0f766e",
+        "style": "glass"
+    }
+}

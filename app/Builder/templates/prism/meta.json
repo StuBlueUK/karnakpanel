@@ -1,0 +1,23 @@
+{
+    "name": "Prism",
+    "for": "Creative agency",
+    "category": "Modern & bold",
+    "pages": [
+        "Home",
+        "Work",
+        "Studio",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#18122b",
+        "c2": "#a21caf",
+        "c3": "#1a1523",
+        "c4": "#fbf5ff",
+        "c5": "#ffffff",
+        "head": "Space Grotesk",
+        "body": "Inter",
+        "radius": 14,
+        "c6": "#c2410c",
+        "style": "vivid"
+    }
+}

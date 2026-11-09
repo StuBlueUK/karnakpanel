@@ -1,0 +1,21 @@
+{
+    "name": "Flow",
+    "for": "Plumber & heating engineer",
+    "category": "Home & trades",
+    "pages": [
+        "Home",
+        "Services",
+        "Reviews",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#0c2d48",
+        "c2": "#0369a1",
+        "c3": "#1e293b",
+        "c4": "#eef5fb",
+        "c5": "#ffffff",
+        "head": "Archivo",
+        "body": "Inter",
+        "radius": 8
+    }
+}

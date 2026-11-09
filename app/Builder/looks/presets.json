@@ -1,0 +1,10 @@
+[
+    {"name": "Broadsheet", "theme": {"c1": "#111111", "c2": "#b91c1c", "c3": "#1a1a1a", "c4": "#f4f1ea", "c5": "#fbfaf6", "c6": "#b91c1c", "head": "Playfair Display", "body": "Lato", "radius": 0, "style": "editorial"}},
+    {"name": "Journal", "theme": {"c1": "#1e2a3a", "c2": "#1d4e89", "c3": "#1f2933", "c4": "#eef1f4", "c5": "#ffffff", "c6": "#1d4e89", "head": "DM Serif Display", "body": "DM Sans", "radius": 2, "style": "editorial"}},
+    {"name": "Petal", "theme": {"c1": "#4a2a5a", "c2": "#b0306b", "c3": "#3b2f45", "c4": "#fbf1f6", "c5": "#ffffff", "c6": "#8b7ce0", "head": "Nunito", "body": "Nunito", "radius": 18, "style": "soft"}},
+    {"name": "Mint", "theme": {"c1": "#12453f", "c2": "#0f766e", "c3": "#1d3b37", "c4": "#eefaf6", "c5": "#ffffff", "c6": "#f2a65a", "head": "Plus Jakarta Sans", "body": "Karla", "radius": 16, "style": "soft"}},
+    {"name": "Sunset", "theme": {"c1": "#3d2416", "c2": "#b83c0a", "c3": "#2e1f17", "c4": "#fbecd3", "c5": "#fff8ec", "c6": "#f2b33d", "head": "DM Serif Display", "body": "Karla", "radius": 14, "style": "retro"}},
+    {"name": "Diner", "theme": {"c1": "#1f3b4d", "c2": "#c8283c", "c3": "#1c2830", "c4": "#e9f3ef", "c5": "#fdfbf4", "c6": "#7cc6b5", "head": "Oswald", "body": "Lato", "radius": 12, "style": "retro"}},
+    {"name": "Noir & Gold", "theme": {"c1": "#08080a", "c2": "#c9a24b", "c3": "#ece7dc", "c4": "#17161a", "c5": "#0f0e11", "c6": "#e9d29a", "head": "Cormorant", "body": "Manrope", "radius": 2, "style": "luxe"}},
+    {"name": "Emerald", "theme": {"c1": "#04140f", "c2": "#d4b06a", "c3": "#e8efe9", "c4": "#10261f", "c5": "#0a1b16", "c6": "#f0dca8", "head": "Playfair Display", "body": "Inter", "radius": 4, "style": "luxe"}}
+]

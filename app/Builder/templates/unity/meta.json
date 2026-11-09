@@ -1,0 +1,20 @@
+{
+    "name": "Unity",
+    "for": "Church & community centre",
+    "category": "Community & education",
+    "pages": [
+        "Home",
+        "What’s on",
+        "Visit"
+    ],
+    "theme": {
+        "c1": "#2b2350",
+        "c2": "#5b3fa8",
+        "c3": "#22223b",
+        "c4": "#f4f2fb",
+        "c5": "#ffffff",
+        "head": "Cormorant",
+        "body": "Lato",
+        "radius": 8
+    }
+}

@@ -1,0 +1,21 @@
+{
+    "name": "Meridian",
+    "for": "Consultancy",
+    "category": "Business & professional",
+    "pages": [
+        "Home",
+        "Services",
+        "About",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#0f1e3d",
+        "c2": "#2563eb",
+        "c3": "#1e293b",
+        "c4": "#f1f5fb",
+        "c5": "#ffffff",
+        "head": "Inter",
+        "body": "Inter",
+        "radius": 10
+    }
+}

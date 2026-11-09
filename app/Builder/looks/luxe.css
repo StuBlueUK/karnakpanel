@@ -1,0 +1,43 @@
+/* Luxe: dark and gold. As with Midnight, c5 is the dark page, c4 a lighter
+   surface, c1 the darkest band and c3 the light text; c2 is the gold (thin
+   rules, filled and outlined buttons carrying c5) and c6 a paler gold. */
+html{color-scheme:dark}
+.kb-header{background:color-mix(in srgb,var(--kb-c5) 88%,transparent);border-bottom:1px solid color-mix(in srgb,var(--kb-c2) 35%,transparent)}
+.kb-brand{color:var(--kb-c2);font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+nav[data-kb=menu] a{color:var(--kb-c3);font-weight:500;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase}
+nav[data-kb=menu] a:hover{color:var(--kb-c6)}
+h1,h2,h3{font-weight:500;letter-spacing:.01em}
+.kb-hero{color:var(--kb-c3);background:radial-gradient(70% 80% at 50% 0%,color-mix(in srgb,var(--kb-c2) 14%,var(--kb-c5)),var(--kb-c5) 70%);border-bottom:1px solid color-mix(in srgb,var(--kb-c2) 30%,transparent)}
+.kb-hero h1{font-weight:400}
+.kb-eyebrow,.kb-hero .kb-eyebrow,.kb-dark .kb-eyebrow{display:inline-flex;align-items:center;gap:.9em;color:var(--kb-c2);opacity:1;letter-spacing:.3em}
+.kb-eyebrow::before{content:"";width:2.4em;height:1px;background:currentColor}
+.kb-btn{padding:1.1em 2.2em;background:transparent;color:var(--kb-c2);border:1px solid var(--kb-c2);font-size:.82rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase}
+.kb-btn:not(.kb-ghost){background:var(--kb-c2);color:var(--kb-c5)}
+.kb-btn:hover{transform:none;box-shadow:0 0 0 4px color-mix(in srgb,var(--kb-c2) 18%,transparent)}
+.kb-btn.kb-ghost,.kb-hero .kb-btn.kb-ghost,.kb-dark .kb-btn.kb-ghost{background:transparent;color:var(--kb-c2);border-color:var(--kb-c2)}
+.kb-btn.kb-ghost:hover{background:var(--kb-c2);color:var(--kb-c5)}
+.kb-section.kb-dark{background:var(--kb-c1);color:var(--kb-c3);border-block:1px solid color-mix(in srgb,var(--kb-c2) 30%,transparent)}
+.kb-card{background:var(--kb-c4);color:var(--kb-c3);box-shadow:none;border:1px solid color-mix(in srgb,var(--kb-c2) 22%,transparent);transition:border-color .2s}
+.kb-section.kb-soft .kb-card{background:var(--kb-c5)}
+.kb-card:hover{border-color:color-mix(in srgb,var(--kb-c2) 60%,transparent)}
+.kb-icon{background:transparent;color:var(--kb-c2);border:1px solid color-mix(in srgb,var(--kb-c2) 50%,transparent);border-radius:50%}
+.kb-step{background:transparent;color:var(--kb-c2);border:1px solid var(--kb-c2);font-family:var(--kb-head)}
+.kb-quote{font-family:var(--kb-head);font-size:1.35rem}
+.kb-quote cite{font-size:.8rem;letter-spacing:.14em;text-transform:uppercase}
+.kb-price .kb-amount,.kb-menu .kb-cost{color:var(--kb-c2);font-weight:400}
+.kb-price.kb-featured{outline:0;border-color:var(--kb-c2);box-shadow:inset 0 0 0 4px var(--kb-c4),inset 0 0 0 5px color-mix(in srgb,var(--kb-c2) 45%,transparent)}
+.kb-menu li{border-bottom-color:color-mix(in srgb,var(--kb-c2) 25%,transparent)}
+.kb-media{border:1px solid color-mix(in srgb,var(--kb-c2) 30%,transparent)}
+.kb-placeholder,.kb-photo,.kb-avatar{background:linear-gradient(135deg,color-mix(in srgb,var(--kb-c2) 18%,var(--kb-c4)),var(--kb-c4))}
+.kb-badges li,.kb-hero .kb-badges li,.kb-dark .kb-badges li{background:transparent;border:1px solid color-mix(in srgb,var(--kb-c2) 40%,transparent)}
+.kb-list li::before{width:.5em;height:.5em;top:1.05em;border-radius:0;background:var(--kb-c2);transform:rotate(45deg)}
+.kb-faq,.kb-table th,.kb-table td{border-bottom-color:color-mix(in srgb,var(--kb-c2) 25%,transparent)}
+.kb-divider,hr{border-top-color:color-mix(in srgb,var(--kb-c2) 30%,transparent)}
+.kb-form input,.kb-form textarea{background:var(--kb-c4);color:var(--kb-c3);border-color:color-mix(in srgb,var(--kb-c2) 30%,transparent)}
+.kb-soc,.kb-dark .kb-soc,.kb-hero .kb-soc,.kb-footer .kb-soc{background:transparent;color:var(--kb-c2);border:1px solid color-mix(in srgb,var(--kb-c2) 45%,transparent)}
+.kb-soc:hover{background:var(--kb-c2);color:var(--kb-c5)}
+.kb-footer{background:var(--kb-c1);color:color-mix(in srgb,var(--kb-c3) 75%,transparent);border-top:1px solid color-mix(in srgb,var(--kb-c2) 35%,transparent)}
+.kb-footer a,.kb-footer nav[data-kb=menu] a{color:var(--kb-c3)}
+.kb-credit{background:var(--kb-c1);color:color-mix(in srgb,var(--kb-c3) 60%,transparent);border-top-color:color-mix(in srgb,var(--kb-c2) 15%,transparent)}
+.kb-slider::scroll-button(left),.kb-slider::scroll-button(right){background:color-mix(in srgb,var(--kb-c4) 90%,transparent);color:var(--kb-c2)}
+.kb-slide::scroll-marker:target-current{background:var(--kb-c2)}

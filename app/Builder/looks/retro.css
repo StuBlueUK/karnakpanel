@@ -1,0 +1,37 @@
+/* Retro: warm 70s print. A light hero with sunset stripes (c2, c6, c1) along
+   its foot, pill buttons with a drop edge, double-ruled cards, sunburst photo
+   slots. c2 carries white text; c6 is a light highlight that carries c1. */
+.kb-header{background:var(--kb-c5);backdrop-filter:none;border-bottom:2px solid var(--kb-c1)}
+.kb-brand{color:var(--kb-c1);font-weight:900}
+h1,h2{font-weight:800;letter-spacing:-.015em}
+.kb-hero{color:var(--kb-c3);background:linear-gradient(var(--kb-c4),var(--kb-c4)) top/100% calc(100% - 30px) no-repeat,linear-gradient(var(--kb-c2) 0 10px,var(--kb-c6) 10px 20px,var(--kb-c1) 20px 30px) bottom/100% 30px no-repeat;padding-bottom:calc(clamp(72px,12vw,150px) + 30px)}
+.kb-hero h1{color:var(--kb-c1)}
+.kb-hero .kb-eyebrow{color:var(--kb-c2);opacity:1}
+.kb-eyebrow::before{content:"\2605\00a0"}
+.kb-hero .kb-btn.kb-ghost{color:var(--kb-c1);border-color:currentColor}
+.kb-hero .kb-badges li{background:var(--kb-c5);border:2px solid var(--kb-c1)}
+.kb-hero .kb-soc{background:var(--kb-c1);color:var(--kb-c5)}
+.kb-btn{border-radius:999px;font-size:.92rem;letter-spacing:.06em;text-transform:uppercase}
+.kb-btn:not(.kb-ghost){box-shadow:0 4px 0 var(--kb-c1)}
+.kb-btn:hover{transform:translateY(2px);box-shadow:0 2px 0 var(--kb-c1)}
+.kb-btn.kb-ghost:hover{box-shadow:none}
+.kb-section.kb-dark{background:linear-gradient(var(--kb-c2) 0 6px,var(--kb-c6) 6px 12px,var(--kb-c1) 12px)}
+.kb-card{border:2px solid var(--kb-c1);box-shadow:inset 0 0 0 4px var(--kb-c5),inset 0 0 0 5px color-mix(in srgb,var(--kb-c1) 40%,transparent)}
+.kb-icon{border-radius:50%;background:var(--kb-c6);color:var(--kb-c1)}
+.kb-step{background:var(--kb-c6);color:var(--kb-c1);border:2px solid var(--kb-c1)}
+.kb-placeholder,.kb-photo,.kb-avatar{background:repeating-conic-gradient(from 0deg at 50% 110%,color-mix(in srgb,var(--kb-c6) 40%,var(--kb-c4)) 0 8deg,var(--kb-c4) 8deg 16deg)}
+.kb-quote{font-family:var(--kb-head)}
+.kb-price .kb-amount,.kb-menu .kb-cost{color:var(--kb-c2)}
+.kb-price.kb-featured{outline:0;background:var(--kb-c1);color:var(--kb-c5);box-shadow:inset 0 0 0 4px var(--kb-c1),inset 0 0 0 5px var(--kb-c6)}
+.kb-price.kb-featured .kb-amount,.kb-price.kb-featured li::before{color:var(--kb-c6)}
+.kb-price.kb-featured li{border-bottom-color:color-mix(in srgb,var(--kb-c5) 20%,transparent)}
+.kb-menu li{border-bottom:2px dotted color-mix(in srgb,var(--kb-c1) 40%,transparent)}
+.kb-badges li{background:var(--kb-c6);color:var(--kb-c1)}
+.kb-dark .kb-badges li{color:inherit}
+.kb-list li::before{background:var(--kb-c2);border-radius:0;transform:rotate(45deg)}
+.kb-faq{border-bottom:2px dashed color-mix(in srgb,var(--kb-c1) 35%,transparent)}
+.kb-form input,.kb-form textarea{border:2px solid var(--kb-c1);border-radius:calc(var(--kb-radius) + 6px)}
+.kb-soc{background:var(--kb-c6);color:var(--kb-c1)}
+.kb-soc:hover{background:var(--kb-c2);color:#fff}
+.kb-footer{background:linear-gradient(var(--kb-c6) 0 6px,var(--kb-c2) 6px 12px,var(--kb-c1) 12px);padding-top:60px}
+.kb-slide::scroll-marker:target-current{background:var(--kb-c2)}

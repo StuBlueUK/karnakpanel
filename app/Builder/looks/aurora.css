@@ -1,0 +1,21 @@
+/* Aurora: glowing colour fields behind the hero and dark bands, gradient
+   buttons and icons. c2 -> c6 is the gradient; both carry white text. */
+.kb-hero,.kb-section.kb-dark{position:relative;isolation:isolate;background-color:var(--kb-c1);background-image:radial-gradient(55% 75% at 12% 18%,color-mix(in srgb,var(--kb-c2) 60%,transparent),transparent 72%),radial-gradient(50% 70% at 88% 26%,color-mix(in srgb,var(--kb-c6) 55%,transparent),transparent 72%),radial-gradient(70% 60% at 50% 112%,color-mix(in srgb,var(--kb-c2) 45%,var(--kb-c6)),transparent 72%);background-size:140% 140%;animation:kb-aurora 22s ease-in-out infinite alternate}
+@keyframes kb-aurora{from{background-position:0% 0%}to{background-position:100% 100%}}
+.kb-hero h1{letter-spacing:-.03em}
+.kb-hero .kb-eyebrow,.kb-dark .kb-eyebrow{padding:.4em 1em;border-radius:999px;background:color-mix(in srgb,var(--kb-c5) 14%,transparent);border:1px solid color-mix(in srgb,var(--kb-c5) 28%,transparent);opacity:1}
+.kb-eyebrow{background:linear-gradient(90deg,var(--kb-c2),var(--kb-c6));-webkit-background-clip:text;background-clip:text;color:transparent}
+.kb-hero .kb-eyebrow,.kb-dark .kb-eyebrow{-webkit-background-clip:border-box;background-clip:border-box;color:inherit}
+.kb-btn:not(.kb-ghost){background:linear-gradient(135deg,var(--kb-c2),var(--kb-c6));border-color:transparent;background-origin:border-box}
+.kb-btn:not(.kb-ghost):hover{box-shadow:0 10px 30px color-mix(in srgb,var(--kb-c6) 40%,transparent)}
+.kb-hero .kb-btn:not(.kb-ghost),.kb-dark .kb-btn:not(.kb-ghost){box-shadow:0 0 0 1px color-mix(in srgb,var(--kb-c5) 25%,transparent)}
+.kb-brand{background:linear-gradient(90deg,var(--kb-c1),var(--kb-c2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.kb-section.kb-soft{background:linear-gradient(170deg,var(--kb-c4),color-mix(in srgb,var(--kb-c6) 7%,var(--kb-c4)))}
+.kb-card{border:1px solid color-mix(in srgb,var(--kb-c2) 14%,transparent);transition:transform .2s,box-shadow .2s}
+.kb-card:hover{transform:translateY(-3px);box-shadow:0 18px 40px -12px color-mix(in srgb,var(--kb-c2) 30%,transparent)}
+.kb-icon,.kb-step{background:linear-gradient(135deg,var(--kb-c2),var(--kb-c6));color:#fff}
+.kb-placeholder,.kb-photo,.kb-avatar{background:linear-gradient(135deg,color-mix(in srgb,var(--kb-c2) 40%,var(--kb-c4)),color-mix(in srgb,var(--kb-c6) 30%,var(--kb-c4)))}
+.kb-price.kb-featured{outline:0;border:2px solid transparent;background:linear-gradient(var(--kb-c5),var(--kb-c5)) padding-box,linear-gradient(135deg,var(--kb-c2),var(--kb-c6)) border-box}
+.kb-list li::before,.kb-slide::scroll-marker:target-current{background:linear-gradient(135deg,var(--kb-c2),var(--kb-c6))}
+.kb-footer{border-top:3px solid transparent;border-image:linear-gradient(90deg,var(--kb-c2),var(--kb-c6)) 1}
+.kb-soc:hover{background:linear-gradient(135deg,var(--kb-c2),var(--kb-c6))}

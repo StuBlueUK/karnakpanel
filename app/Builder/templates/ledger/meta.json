@@ -1,0 +1,21 @@
+{
+    "name": "Ledger",
+    "for": "Accountant & bookkeeper",
+    "category": "Business & professional",
+    "pages": [
+        "Home",
+        "Pricing",
+        "About",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#0f2e2a",
+        "c2": "#0f766e",
+        "c3": "#1f2937",
+        "c4": "#eff7f5",
+        "c5": "#ffffff",
+        "head": "Manrope",
+        "body": "Inter",
+        "radius": 8
+    }
+}

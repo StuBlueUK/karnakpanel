@@ -1,0 +1,21 @@
+{
+    "name": "Serene",
+    "for": "Spa & massage",
+    "category": "Beauty & wellness",
+    "pages": [
+        "Home",
+        "Treatments",
+        "About",
+        "Book"
+    ],
+    "theme": {
+        "c1": "#1f3d36",
+        "c2": "#2f6f5e",
+        "c3": "#1c2b27",
+        "c4": "#eef5f1",
+        "c5": "#fcfdfb",
+        "head": "Cormorant",
+        "body": "Lato",
+        "radius": 16
+    }
+}

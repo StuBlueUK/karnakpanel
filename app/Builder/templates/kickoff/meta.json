@@ -1,0 +1,22 @@
+{
+    "name": "Kickoff",
+    "for": "Sports club",
+    "category": "Community & education",
+    "pages": [
+        "Home",
+        "Teams",
+        "Join"
+    ],
+    "theme": {
+        "c1": "#1f3b4d",
+        "c2": "#c8283c",
+        "c3": "#1c2830",
+        "c4": "#e9f3ef",
+        "c5": "#fdfbf4",
+        "head": "Oswald",
+        "body": "Lato",
+        "radius": 12,
+        "c6": "#7cc6b5",
+        "style": "retro"
+    }
+}

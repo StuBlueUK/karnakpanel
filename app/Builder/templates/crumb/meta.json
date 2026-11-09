@@ -1,0 +1,21 @@
+{
+    "name": "Crumb",
+    "for": "Bakery & patisserie",
+    "category": "Food & drink",
+    "pages": [
+        "Home",
+        "Bakes",
+        "Cakes",
+        "Visit"
+    ],
+    "theme": {
+        "c1": "#5a3416",
+        "c2": "#a14a0b",
+        "c3": "#33241a",
+        "c4": "#fdf3e3",
+        "c5": "#fffcf6",
+        "head": "Playfair Display",
+        "body": "Nunito",
+        "radius": 20
+    }
+}

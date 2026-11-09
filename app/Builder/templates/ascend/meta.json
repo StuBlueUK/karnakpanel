@@ -1,0 +1,23 @@
+{
+    "name": "Ascend",
+    "for": "Coach & online courses",
+    "category": "Modern & bold",
+    "pages": [
+        "Home",
+        "Courses",
+        "About",
+        "Contact"
+    ],
+    "theme": {
+        "c1": "#0f1e3d",
+        "c2": "#1d4ed8",
+        "c3": "#0f172a",
+        "c4": "#f1f5ff",
+        "c5": "#ffffff",
+        "head": "Manrope",
+        "body": "Manrope",
+        "radius": 18,
+        "c6": "#7e22ce",
+        "style": "aurora"
+    }
+}
