@@ -16,9 +16,9 @@ class ApiTokenController extends ApiController {
         $u = Auth::user();
         $label = substr(trim($_POST['label'] ?? 'panel'), 0, 80);
         $token = bin2hex(random_bytes(32));
-        // optional lifetime: 0 = never (billing integrations), else N days
+        // optional lifetime: 0 = never (billing), else N days — refuse anything else (sweep Low)
         $days = (int)($_POST['days'] ?? 0);
-        if (!in_array($days, [0, 30, 90, 365], true)) $days = 0;
+        if (!in_array($days, [0, 30, 90, 365], true)) { Helpers::flash('err', 'Bad token lifetime (never, 30, 90 or 365 days)'); Helpers::redirect('/api-tokens'); }
         ApiModel::insertToken((int)$u['id'], $label, $token, $days);
         Helpers::flash('ok', "Token minted ($label): $token — send as X-API-KEY header. Shown only once.".($days ? " Expires in $days days." : ''));
         Helpers::redirect('/api-tokens');

@@ -21,7 +21,10 @@ admin button shows live disk/BW without leaving WHMCS.
 
 ## Notes
 - TLS is fully verified (valid panel cert required — LE on prod ✅).
-- Bad tokens return 401 and count toward the panel fail2ban jail.
+- Bad tokens return 401, are written to panel.log and count toward the panel
+  fail2ban jail: 10 failures in 10 min from one IP bans that IP from port 8090
+  for an hour. The jail cannot tell a bot from a broken integration (a missing
+  key counts too), so fix a misconfigured client promptly.
 - Terminate deletes sites, mail, DBs and DNS (panel backups of files kept).
 - **Pin the token**: on the panel API page, set the `whmcs` token's IP to
   your WHMCS server IP (or the panel's own IP if WHMCS runs on the same

@@ -58,6 +58,14 @@ while IFS=$'\t' read -r IID U D SUB; do
   PUPD=0
   if [[ -f "$DOC/wp-config.php" ]]; then
     PHAR="$(dirname "$(readlink -f "$0")")/wp-cli.phar"
+    # pinned at vendor time (same hash fleet-update.sh enforces): the phar runs
+    # customer code through su and a swapped file would be root-equivalent, so
+    # an unpinned phar is never executed — plugin counts just stay 0 (sweep Low)
+    PIN="ce34ddd838f7351d6759068d09793f26755463b4a4610a5a5c0a97b68220d85c"
+    if [[ -f "$PHAR" ]] && ! echo "$PIN  $PHAR" | sha256sum -c - >/dev/null 2>&1; then
+      echo "fleet-scan: REFUSED wp-cli.phar hash mismatch — plugin counts skipped" >&2
+      PHAR=""
+    fi
     # wp-cli loads the site's own plugins = customer code: same link filter as cron
     . "$(dirname "$(readlink -f "$0")")/seccomp-common.sh"
     PHPC=""

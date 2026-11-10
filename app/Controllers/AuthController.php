@@ -24,12 +24,12 @@ class AuthController extends DashboardController {
             $fails = LoginAttempt::failuresByIp($ip);
             // per-username bucket too: spreading guesses over many IPs must
             // not escape the limit (looser cap — it doubles as a lockout lever)
-            $userFails = LoginAttempt::failuresByUser(substr((string)($_POST['username'] ?? ''), 0, 64));
+            $userFails = LoginAttempt::failuresByUser(strtolower(trim(substr((string)($_POST['username'] ?? ''), 0, 64))));
             if ($fails >= self::LOGIN_MAX || $userFails >= 30) {
                 Helpers::log("login throttled for $ip ($fails ip / $userFails user recent failures)");
                 // real wait: until the oldest failure in the window ages out
                 $byIp = $fails >= self::LOGIN_MAX;
-                $key = $byIp ? $ip : substr((string)($_POST['username'] ?? ''), 0, 64);
+                $key = $byIp ? $ip : strtolower(trim(substr((string)($_POST['username'] ?? ''), 0, 64)));
                 $left = LoginAttempt::waitMinutes($byIp, $key, $byIp ? self::LOGIN_MAX : 30);
                 Helpers::flash('err', 'Too many failed attempts — try again in '.max(1, min(15, $left)).' minute'.($left === 1 ? '' : 's'));
                 Helpers::redirect('/login');
@@ -41,7 +41,7 @@ class AuthController extends DashboardController {
                 // clear only THIS username's failures: wiping the whole IP
                 // bucket let anyone with a valid account reset the counter
                 // between guesses at someone else's
-                try { LoginAttempt::clearFor($ip, substr((string)($_POST['username'] ?? ''), 0, 64)); } catch (Throwable $e) {}
+                try { LoginAttempt::clearFor($ip, strtolower(trim(substr((string)($_POST['username'] ?? ''), 0, 64)))); } catch (Throwable $e) {}
                 Helpers::redirect('/');
             }
             if ($res === 'totp') { Helpers::redirect('/login/totp'); }
@@ -51,7 +51,7 @@ class AuthController extends DashboardController {
             Helpers::redirect('/login');
         }
         try {
-            LoginAttempt::record($ip, substr((string)($_POST['username'] ?? ''), 0, 64));
+            LoginAttempt::record($ip, strtolower(trim(substr((string)($_POST['username'] ?? ''), 0, 64))));
         } catch (Throwable $e) {}
         $rem = self::LOGIN_MAX - ($fails + 1);
         Helpers::flash('err', $rem <= 0 ? 'Invalid login — too many failed attempts, try again in 15 minutes'

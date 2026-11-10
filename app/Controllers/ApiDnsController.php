@@ -33,11 +33,11 @@ class ApiDnsController extends ApiController {
             $r = $dns->apply((int)$d['id'], $d['domain']);
             if (($r['code'] ?? 1) !== 0) {
                 try { ApiModel::deleteDnsRecord($newId); } catch (Throwable $e2) {}
-                $this->json(['error' => 'BIND rejected (nothing saved): '.trim($r['out'])], 422);
+                $this->apiFailed('DNS add', 422, null, $r['out']);
             }
             Helpers::log("API DNS $type $host added on {$d['domain']} by {$me['username']}");
             $this->json(['ok' => true, 'id' => $newId]);
-        } catch (Throwable $e) { $this->json(['error' => 'add failed: '.$e->getMessage()], 500); }
+        } catch (Throwable $e) { $this->apiFailed('DNS add', 500, $e); }
     }
     public function dnsUpdate(): void {
         $me = $this->tokenAuth();
@@ -62,11 +62,11 @@ class ApiDnsController extends ApiController {
             $r = $dns->apply((int)$row['domain_id'], $row['domain']);
             if (($r['code'] ?? 1) !== 0) {
                 try { ApiModel::updateDnsRecord($id, (string)$row['type'], (string)$row['host'], (string)$row['value'], (int)$row['priority'], (int)$row['ttl']); } catch (Throwable $e2) {}
-                $this->json(['error' => 'BIND rejected (kept previous values): '.trim($r['out'])], 422);
+                $this->apiFailed('DNS update', 422, null, $r['out']);
             }
             Helpers::log("API DNS record $id updated on {$row['domain']} by {$me['username']}");
             $this->json(['ok' => true, 'id' => $id]);
-        } catch (Throwable $e) { $this->json(['error' => 'update failed: '.$e->getMessage()], 500); }
+        } catch (Throwable $e) { $this->apiFailed('DNS update', 500, $e); }
     }
     public function dnsDelete(): void {
         $me = $this->tokenAuth();

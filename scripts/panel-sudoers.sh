@@ -28,9 +28,28 @@ SD=/usr/local/skypanel/scripts
 APP=/usr/local/skypanel/panel
 S=/etc/sudoers.d/skypanel
 CMDS=()
+# Scan REAL CODE only: token_get_all skips comments and docblocks. A comment
+# that merely mentions 'transfer-serve.sh' used to land in the allowlist and
+# silently widen the root policy (sweep Low, 2026-11-08).
+CMDLIST="$(php -r '
+$out = [];
+foreach (array_slice($argv, 1) as $dir) {
+    $it = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir, FilesystemIterator::SKIP_DOTS));
+    foreach ($it as $f) {
+        if (!$f->isFile() || !str_ends_with($f->getFilename(), ".php")) continue;
+        foreach (token_get_all((string)file_get_contents($f->getPathname())) as $t) {
+            if (!is_array($t) || $t[0] !== T_CONSTANT_ENCAPSED_STRING) continue;
+            $s = substr($t[1], 1, -1);
+            if (preg_match("/^[a-z0-9-]+\.sh$/", $s)) $out[$s] = true;
+        }
+    }
+}
+ksort($out);
+echo implode("\n", array_keys($out));
+' "$APP/app" "$APP/public")" || { echo "panel-sudoers: cannot scan panel sources — $S left as is"; exit 1; }
 while IFS= read -r n; do
-  [[ "$n" =~ ^[a-z0-9-]+\.sh$ && -f "$SD/$n" ]] && CMDS+=("$SD/$n")
-done < <(grep -rhoE "'[a-z0-9-]+\.sh'" "$APP/app" "$APP/public" --include='*.php' 2>/dev/null | tr -d "'" | sort -u)
+  [[ -n "$n" && -f "$SD/$n" ]] && CMDS+=("$SD/$n")
+done <<< "$CMDLIST"
 # the panel calls ~150: a handful means a broken tree/grep, not a policy
 (( ${#CMDS[@]} >= 50 )) || { echo "panel-sudoers: only ${#CMDS[@]} panel scripts found under $APP — refusing, $S left as is"; exit 1; }
 TMP="$(mktemp /etc/sudoers.d/.skypanel.XXXXXX)"

@@ -10,8 +10,17 @@ case "$CMD" in
   ssl) /usr/local/skypanel/scripts/ssl-issue.sh "$2" "${3:-admin@localhost}" ;;
   ssh-key)
     U="$2"; KEY="${3:-}"
-    mkdir -p "/home/$U/.ssh"; echo "$KEY" >> "/home/$U/.ssh/authorized_keys"
-    chown -R "$U:$U" "/home/$U/.ssh"; chmod 700 "/home/$U/.ssh"; chmod 600 "/home/$U/.ssh/authorized_keys"
+    [[ $EUID -eq 0 ]] || { echo "run as root"; exit 1; }
+    # $U reaches paths and chown: validate + require an existing account
+    # (sweep Low: the old verb accepted any string and chowned "$U:$U").
+    [[ "$U" =~ ^[a-z][a-z0-9_]{2,31}$ ]] || { echo "bad username"; exit 1; }
+    id -u "$U" >/dev/null 2>&1 || { echo "no such user: $U"; exit 1; }
+    KEYRX='^(ssh-(ed25519|rsa)|ecdsa-sha2-nistp(256|384|521)|sk-(ssh-ed25519|ecdsa-sha2-nistp256)@openssh\.com) [A-Za-z0-9+/=]+( .*)?$'
+    [[ "$KEY" =~ $KEYRX ]] || { echo "bad public key (one ssh-… line expected)"; exit 1; }
+    install -d -m 700 -o "$U" -g "$(id -gn "$U")" "/home/$U/.ssh"
+    grep -qxF "$KEY" "/home/$U/.ssh/authorized_keys" 2>/dev/null || printf '%s\n' "$KEY" >> "/home/$U/.ssh/authorized_keys"
+    chown "$U": "/home/$U/.ssh" "/home/$U/.ssh/authorized_keys"
+    chmod 700 "/home/$U/.ssh"; chmod 600 "/home/$U/.ssh/authorized_keys"
     echo "key added for $U" ;;
   2fa-reset)
     # root over SSH only: lost-authenticator recovery when no admin can log in

@@ -36,12 +36,48 @@ class Auth {
     }
     public static function check(): bool { return self::user() !== null; }
     public static function role(): string { return (string)(self::user()['role'] ?? 'guest'); }
+    // Idle + absolute session lifetime (security sweep 2026-11-08 M2). A stolen
+    // session cookie used to live until PHP's probabilistic GC — hours to days,
+    // with no ceiling. Both clocks are session keys owned here and checked on
+    // EVERY authed request in requireLogin(); impersonation does not restart
+    // them (login-as must not extend the real login's life).
+    public const SESSION_IDLE = 7200;   // 2 h without a request
+    public const SESSION_MAX  = 43200;  // 12 h from login, active or not
+    /**
+     * Pure decision, unit-tested: 'idle', 'absolute' or null. A session from
+     * before these stamps existed has login_at <= 0 and is stamped on its next
+     * request instead of being logged out en masse by the upgrade.
+     * @param array<string,mixed> $s
+     */
+    public static function expiryReason(array $s, int $now): ?string {
+        $start = (int)($s['login_at'] ?? 0);
+        if ($start <= 0) return null;
+        if ($now - $start > self::SESSION_MAX) return 'absolute';
+        $last = (int)($s['last_activity'] ?? $start);
+        return ($now - $last > self::SESSION_IDLE) ? 'idle' : null;
+    }
     // Fresh users row for this request (null until requireLogin ran).
     private static ?array $fresh = null;
     public static function fresh(): ?array { return self::$fresh; }
     public static function requireLogin(): void {
         if (!self::check()) Helpers::redirect('/login');
         $u = self::user() ?? [];
+        $now = time();
+        if (!isset($_SESSION['login_at'])) $_SESSION['login_at'] = $now; // pre-timeout session
+        if (!isset($_SESSION['last_activity'])) $_SESSION['last_activity'] = $now;
+        $why = self::expiryReason($_SESSION, $now);
+        if ($why !== null) {
+            $who = (string)($u['username'] ?? '?');
+            $_SESSION = [];
+            session_destroy();
+            Helpers::log("session expired for '$who' ($why timeout)");
+            session_start(); session_regenerate_id(true);
+            Helpers::flash('err', $why === 'idle'
+                ? 'Your session expired after '.intdiv(self::SESSION_IDLE, 60).' minutes of inactivity — please log in again'
+                : 'Your session reached its maximum lifetime — please log in again');
+            Helpers::redirect('/login');
+        }
+        $_SESSION['last_activity'] = $now; // sliding idle window
         // Live account check: the session snapshots the row at login, so a
         // suspend/delete/role change would otherwise survive until logout.
         // One PK read per request (Controller::view reuses it for quota).
@@ -123,6 +159,8 @@ class Auth {
     private static function finishLogin(array $u): void {
         unset($_SESSION['csrf']); // fresh token across the privilege change
         $_SESSION['user'] = $u;
+        $_SESSION['login_at'] = time();      // absolute lifetime starts here
+        $_SESSION['last_activity'] = $_SESSION['login_at'];
         $now = (string)($_SERVER['REMOTE_ADDR'] ?? '');
         $prev = (string)($u['last_ip'] ?? '');
         Database::query("UPDATE users SET last_login=NOW(), last_ip=? WHERE id=?", [$now, $u['id']]);
@@ -137,7 +175,18 @@ class Auth {
         }
     }
     public static function logout(): void {
-        unset($_SESSION['user']); session_destroy();
+        unset($_SESSION['user']);
+        // Expire the cookie too: session_destroy() only removes the server
+        // side, and the browser would keep sending a dead SID (sweep Low).
+        if (ini_get('session.use_cookies')) {
+            $p = session_get_cookie_params();
+            setcookie(session_name(), '', [
+                'expires' => time() - 42000, 'path' => $p['path'], 'domain' => $p['domain'],
+                'secure' => (bool)$p['secure'], 'httponly' => (bool)$p['httponly'],
+                'samesite' => (string)$p['samesite'],
+            ]);
+        }
+        session_destroy();
     }
     // Support login-as: $targetId must be visible to $me (admin: anyone
     // non-admin; reseller: own users only). Never nested, never self.

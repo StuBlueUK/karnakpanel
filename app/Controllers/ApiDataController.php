@@ -25,7 +25,7 @@ class ApiDataController extends ApiController {
             [$dbname, $dbuser] = MysqlDb::create($t, $name, $pass);
             Helpers::log("API database $dbname created for {$t['username']} by {$me['username']}");
             $this->json(['ok' => true, 'db_name' => $dbname, 'db_user' => $dbuser, 'password' => $pass]);
-        } catch (Throwable $e) { $this->json(['error' => 'create failed: '.$e->getMessage()], 500); }
+        } catch (Throwable $e) { $this->apiFailed('create', 500, $e); }
     }
     public function dbDelete(): void {
         $me = $this->tokenAuth();
@@ -39,7 +39,7 @@ class ApiDataController extends ApiController {
             MysqlDb::drop($row);
             Helpers::log("API database {$row['db_name']} deleted by {$me['username']}");
             $this->json(['ok' => true, 'deleted' => $row['db_name']]);
-        } catch (Throwable $e) { $this->json(['error' => 'delete failed: '.$e->getMessage()], 500); }
+        } catch (Throwable $e) { $this->apiFailed('delete', 500, $e); }
     }
     public function dbReset(): void {
         $me = $this->tokenAuth();
@@ -52,7 +52,7 @@ class ApiDataController extends ApiController {
             $pass = MysqlDb::resetPassword($row);
             Helpers::log("API db password reset for {$row['db_user']} by {$me['username']}");
             $this->json(['ok' => true, 'db_user' => $row['db_user'], 'password' => $pass]);
-        } catch (Throwable $e) { $this->json(['error' => 'reset failed: '.$e->getMessage()], 500); }
+        } catch (Throwable $e) { $this->apiFailed('reset', 500, $e); }
     }
     // ---- backups ----
     public function backupList(): void {
@@ -70,7 +70,7 @@ class ApiDataController extends ApiController {
         // new row appears — backup-account.sh registers it when done
         $r = ServiceManager::run('backup-bg.sh', ['start', $t['username']]);
         $out = trim($r['out'] ?? '');
-        if (($r['code'] ?? 1) !== 0) $this->json(['error' => 'backup not started: '.$out], 500);
+        if (($r['code'] ?? 1) !== 0) $this->apiFailed('backup start', 500, null, $out);
         Helpers::log("API backup started for {$t['username']} by {$me['username']}");
         $this->json(['ok' => true, 'running' => true, 'already_running' => $out === 'already running', 'filename' => null]);
     }

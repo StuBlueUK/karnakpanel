@@ -135,4 +135,53 @@ final class Store
         $r = $st->fetch();
         return [(int)$r['objects'], (int)$r['collections']];
     }
+
+    // ---- per-mailbox auth-failure counter (security sweep 2026-11-08 M8) ----
+    // fail2ban bans one IP at a time; a botnet guessing one mailbox from many
+    // addresses would never trip it. This counter is per ADDRESS (not IP) and
+    // only adds a delay — never a lockout — so an attacker cannot take a
+    // victim's calendar offline by guessing at it. Cleared by a correct login.
+    public const FAIL_WINDOW_MIN = 15;
+    public const FAIL_FREE = 5;
+    public const FAIL_STEP_US = 250000;   // 250 ms per failure past FAIL_FREE
+    public const FAIL_MAX_US = 2000000;   // 2 s cap: a stale phone must not hang a worker
+
+    /** Backoff for a mailbox with this many recent failures. Pure (unit-tested). */
+    public static function throttleMicros(int $fails): int
+    {
+        if ($fails <= self::FAIL_FREE) return 0;
+        return (int)min(($fails - self::FAIL_FREE) * self::FAIL_STEP_US, self::FAIL_MAX_US);
+    }
+
+    /** Failures for this mailbox inside the window (0 on any DB error). */
+    public static function authFails(string $address): int
+    {
+        try {
+            $st = self::pdo()->prepare(
+                'SELECT fails FROM karnak_auth_fails WHERE address=? AND window_start > (NOW() - INTERVAL ' . self::FAIL_WINDOW_MIN . ' MINUTE)'
+            );
+            $st->execute([$address]);
+            return (int)($st->fetchColumn() ?: 0);
+        } catch (\Throwable $e) { return 0; }
+    }
+
+    /** Count one failure; returns the new window count (0 on any DB error). */
+    public static function noteAuthFail(string $address): int
+    {
+        try {
+            self::pdo()->prepare(
+                'INSERT INTO karnak_auth_fails(address, fails, window_start) VALUES(?, 1, NOW())
+                 ON DUPLICATE KEY UPDATE
+                   fails = IF(window_start < (NOW() - INTERVAL ' . self::FAIL_WINDOW_MIN . ' MINUTE), 1, fails + 1),
+                   window_start = IF(window_start < (NOW() - INTERVAL ' . self::FAIL_WINDOW_MIN . ' MINUTE), NOW(), window_start)'
+            )->execute([$address]);
+            return self::authFails($address);
+        } catch (\Throwable $e) { return 0; }
+    }
+
+    /** A correct password resets the mailbox's counter. */
+    public static function clearAuthFails(string $address): void
+    {
+        try { self::pdo()->prepare('DELETE FROM karnak_auth_fails WHERE address=?')->execute([$address]); } catch (\Throwable $e) {}
+    }
 }

@@ -5,8 +5,8 @@ declare(strict_types=1);
 // side = one A record in the PARENT zone — never a zone of its own.
 class SubdomainController extends Controller {
     public function index(): void {
-        // folded into the Domains page (Subdomains tab) — keep the route so
-        // old links / bookmarks land in the right place.
+        // old links land on the Domains tab; gated like every route
+        Auth::requireLogin();
         Helpers::redirect('/domains?tab=subdomains');
     }
     public function create(): void {

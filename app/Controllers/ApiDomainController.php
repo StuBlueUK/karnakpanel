@@ -47,7 +47,7 @@ class ApiDomainController extends ApiController {
             }
             Helpers::log("API domain $domain created for {$t['username']} by {$me['username']}");
             $this->json(['ok' => true, 'id' => $domId, 'domain' => $domain, 'docroot' => $docroot]);
-        } catch (Throwable $e) { $this->json(['error' => 'create failed: '.$e->getMessage()], 500); }
+        } catch (Throwable $e) { $this->apiFailed('create', 500, $e); }
     }
     public function domDelete(): void {
         $me = $this->tokenAuth();
@@ -75,7 +75,7 @@ class ApiDomainController extends ApiController {
             ServiceManager::run('list-sync.sh', []);
             Helpers::log("API domain {$d['domain']} deleted by {$me['username']}");
             $this->json(['ok' => true, 'deleted' => $d['domain']]);
-        } catch (Throwable $e) { $this->json(['error' => 'delete failed: '.$e->getMessage()], 500); }
+        } catch (Throwable $e) { $this->apiFailed('delete', 500, $e); }
     }
     // ---- DNS ----
     public function domRewrite(): void {
@@ -88,9 +88,9 @@ class ApiDomainController extends ApiController {
         if ($err !== null) $this->json(['error' => $err], 422);
         ApiModel::setRewriteRules((int)$d['id'], $rules);
         $r = ServiceManager::run('rewrite-sync.sh', [$d['domain']]);
-        if (($r['code'] ?? 1) !== 0) $this->json(['error' => 'rules refused: '.trim($r['out'])], 422);
+        if (($r['code'] ?? 1) !== 0) $this->apiFailed('rewrite', 422, null, $r['out']);
         Helpers::log("API rewrite rules saved for {$d['domain']} by {$me['username']}");
-        $this->json(['ok' => true, 'domain' => $d['domain'], 'detail' => trim($r['out'])]);
+        $this->json(['ok' => true, 'domain' => $d['domain']]);
     }
     public function domHtaccess(): void {
         $me = $this->tokenAuth();
@@ -109,9 +109,9 @@ class ApiDomainController extends ApiController {
         $srcHash = hash('sha256', (string)file_get_contents($ht));
         ApiModel::setRewriteFromHtaccess((int)$d['id'], $clean, $srcHash);
         $r = ServiceManager::run('rewrite-sync.sh', [$d['domain']]);
-        if (($r['code'] ?? 1) !== 0) $this->json(['error' => 'sync refused: '.trim($r['out']), 'converted' => $converted, 'skipped' => $skipped, 'report' => $report], 422);
+        if (($r['code'] ?? 1) !== 0) $this->apiFailed('rewrite sync', 422, null, "converted=$converted skipped=$skipped; ".trim($r['out']));
         Helpers::log("API .htaccess import for {$d['domain']} by {$me['username']}: $converted converted, $skipped skipped");
-        $this->json(['ok' => true, 'domain' => $d['domain'], 'converted' => $converted, 'skipped' => $skipped, 'report' => $report, 'detail' => trim($r['out'])]);
+        $this->json(['ok' => true, 'domain' => $d['domain'], 'converted' => $converted, 'skipped' => $skipped, 'report' => $report]);
     }
     public function sslIssue(): void {
         $me = $this->tokenAuth();
@@ -131,7 +131,7 @@ class ApiDomainController extends ApiController {
             Helpers::log("API SSL issued for {$d['domain']} by {$me['username']}");
             $this->json(['ok' => true, 'domain' => $d['domain'], 'ssl' => true]);
         }
-        $this->json(['error' => 'SSL failed: '.trim($r['out'])], 502);
+        $this->apiFailed('SSL issue', 502, null, $r['out']);
     }
     // ---- rewrite rules (.htaccess parity — OLS ignores .htaccess) ----
 }

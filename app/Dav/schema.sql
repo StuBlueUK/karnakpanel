@@ -112,3 +112,13 @@ CREATE TABLE IF NOT EXISTS addressbookchanges (
     operation TINYINT(1) NOT NULL,
     INDEX addressbookid_synctoken (addressbookid, synctoken)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- Per-mailbox auth-failure counter (AuthBackend/Store, security sweep M8).
+-- fail2ban bans per IP; distributed guessing against one mailbox needs a
+-- per-address signal. Delay only (never a lockout), cleared on a good login.
+CREATE TABLE IF NOT EXISTS karnak_auth_fails (
+    address VARCHAR(254) NOT NULL PRIMARY KEY,
+    fails INT UNSIGNED NOT NULL DEFAULT 0,
+    window_start DATETIME NOT NULL,
+    updated_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;

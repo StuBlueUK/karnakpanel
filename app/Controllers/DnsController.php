@@ -229,9 +229,10 @@ class DnsController extends Controller {
             if (!preg_match('/^[a-z0-9.-]+\.?$/i', $value)) return 'Bad MX host';
         }
         if ($type === 'TXT' && strlen($value) > 800) return 'TXT too long';
-        // CAA: '0 issue "letsencrypt.org"' (quotes optional, added at render).
-        // Only letsencrypt + common commercial CAs accepted — a typo here
-        // silently blocks issuance, so free-form values are refused.
+        // control chars/backslashes = zone-file line/escape injection (sweep Low)
+        if (in_array($type, ['TXT', 'CAA'], true) && preg_match('/[\x00-\x1F\x7F\\\\]/', $value)) return 'TXT/CAA value may not contain control characters or backslashes';
+        // CAA: '0 issue "letsencrypt.org"' (quotes optional). Only letsencrypt +
+        // common commercial CAs — a typo silently blocks issuance, so no free-form.
         if ($type === 'CAA') {
             $v = trim(str_replace('"', '', $value), "; \t");
             if (!preg_match('/^([01]) (issue|issuewild|iodef) (\S+)$/i', $v, $m)) return 'Bad CAA (e.g. 0 issue letsencrypt.org)';
@@ -240,8 +241,7 @@ class DnsController extends Controller {
                 || ($tag !== 'iodef' && in_array($val2, ['letsencrypt.org','digicert.com','sectigo.com','godaddy.com','comodoca.com','globalsign.com','entrust.net'], true));
             if (!$ok) return 'Unknown CA for CAA (letsencrypt.org, digicert.com, sectigo.com, godaddy.com, comodoca.com, globalsign.com, entrust.net, or mailto:/http(s) for iodef)';
         }
-        // SRV: priority column + 'weight port target'; host must be
-        // _service._proto (underscore labels, optional suffix).
+        // SRV: priority column + 'weight port target'; host is _service._proto.
         if ($type === 'SRV') {
             if ($prio < 0 || $prio > 65535) return 'Bad SRV priority (0-65535)';
             if (!preg_match('/^_[a-z0-9-]+\._[a-z0-9-]+(\.[a-z0-9_.-]+)?$/i', $host)) return 'Bad SRV host (e.g. _sip._tcp)';

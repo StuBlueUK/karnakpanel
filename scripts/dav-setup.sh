@@ -23,7 +23,8 @@
 #     rolled back on failure
 #   - fail2ban [karnak-dav]: wrong DAV passwords (auth.log), port 8091 only,
 #     high threshold (a phone with a stale password retries forever — it must
-#     not ban an office IP off webmail for long)
+#     not ban an office IP off webmail for long), re-bans escalate to a 2 h cap,
+#     plus a per-mailbox delay so distributed guessing (many IPs) still costs
 # reconcile (daily cron): purge calendars/contacts of deleted mailboxes.
 #
 # NOT covered (by design, v1): DAV data is outside disk quotas (capped per
@@ -305,16 +306,38 @@ logpath = $LOGD/auth.log
 maxretry = 20
 findtime = 600
 bantime = 1800
+# escalate repeat offenders: 30 min, x2 per re-ban, capped at 2 h — a stale
+# phone on an office IP must not cost the office webmail (:8091) for a day.
+bantime.increment = true
+bantime.factor = 2
+bantime.maxtime = 7200
 EOF
     CH_F2B=1; ADDED=1
   fi
+  # retrofit the escalation onto boxes whose [karnak-dav] predates it; leave a
+  # hand-tuned section alone (any bantime.increment line is respected as-is).
+  if ! awk '/^\[karnak-dav\]/{p=1;next} /^\[/{p=0} p && /^bantime\.increment *=/' "$J" | grep -q .; then
+    cp -a "$J" "$J.pre-dav-inc"
+    awk '
+      /^\[karnak-dav\]$/ { print; print "bantime.increment = true"; print "bantime.factor = 2"; print "bantime.maxtime = 7200"; next }
+      { print }
+    ' "$J" > "$J.tmp"
+    if [[ "$(grep -c '^bantime.increment = true$' "$J.tmp")" == 1 ]]; then
+      cat "$J.tmp" > "$J"; rm -f "$J.tmp"; CH_F2B=1
+    else
+      rm -f "$J.tmp" "$J.pre-dav-inc"
+      echo "dav-setup: bantime.increment insert failed — jail.local unchanged"; exit 1
+    fi
+  fi
   if (( CH_F2B )) && systemctl is-active --quiet fail2ban; then
     if timeout 60 fail2ban-client reload >/dev/null 2>&1 && timeout 10 fail2ban-client status karnak-dav >/dev/null 2>&1; then
-      rm -f "$J.pre-dav"; say "fail2ban [karnak-dav] active"
+      rm -f "$J.pre-dav" "$J.pre-dav-inc"; say "fail2ban [karnak-dav] active"
     else
       if (( ADDED )); then
         cat "$J.pre-dav" > "$J"; rm -f "$J.pre-dav"; timeout 60 fail2ban-client reload >/dev/null 2>&1 || true
         echo "dav-setup: [karnak-dav] jail did not start — previous jail.local restored"; exit 1
+      elif [[ -f "$J.pre-dav-inc" ]]; then
+        cat "$J.pre-dav-inc" > "$J"; rm -f "$J.pre-dav-inc"; timeout 60 fail2ban-client reload >/dev/null 2>&1 || true
       fi
       echo "dav-setup: fail2ban reload failed after filter update"; exit 1
     fi

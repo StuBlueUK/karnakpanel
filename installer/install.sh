@@ -2,7 +2,7 @@
 # KarnakPanel installer — Ubuntu 24.04 / Debian 13 (22.04: repair re-runs only)
 # Stack: OpenLiteSpeed + PHP-FPM 8.3/8.4/8.5 (panel on LSPHP 8.5), BIND9, cron, Dovecot, Exim4, Fail2ban, MariaDB, SpamAssassin(spamd), OpenSSH, vsftpd, PHP panel
 set -euo pipefail
-SKY_VER="1.5.57"
+SKY_VER="1.5.58"
 SKY_DIR="$(cd "$(dirname "$0")" && pwd)"
 LOG="/var/log/karnakpanel-install.log"
 # root-only log: it records the whole run, and anything secret printed by a

@@ -207,6 +207,11 @@
 - Outbound SMTP restriction for customer scripts (mail() through the server keeps working)
 - Security Advisor: scored checklist of the server's security settings
 - Panel login lock after 4 failed attempts, with warnings and the real wait time; fail2ban panel jail behind it
+- Panel sessions end after 2 hours of inactivity (12 hours maximum from login), so a stolen
+  session cookie does not stay valid until garbage collection
+- API token failures are logged and counted by the panel firewall jail; calendar/contacts password
+  guessing gets escalating bans and a per-mailbox delay; failed second-factor codes count too
+- Account passwords are 10+ characters everywhere (create, API, change)
 - Firewall: open a port to a single IP or network
 - Firewall: block an IP or network
 - SSH page: add authorised keys, generate a root key pair (private half shown once), switch password logins off only once a key is in place (root login goes keys-only with it, existing boxes fixed on update); status reads what sshd actually uses

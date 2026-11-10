@@ -1,5 +1,10 @@
 <?php
 declare(strict_types=1);
+// No stack trace ever reaches a client: display_errors is forced off and both
+// uncaught-exception and fatal-error handlers are installed before the session
+// even starts (Core/Errors, security sweep 2026-11-08 M7).
+require_once __DIR__ . '/../app/Core/Errors.php';
+Errors::install();
 // Hardened session cookie: HttpOnly always, Secure on TLS (dev php -S stays HTTP-capable)
 $__secure = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
 session_set_cookie_params(['lifetime' => 0, 'path' => '/', 'secure' => $__secure, 'httponly' => true, 'samesite' => 'Lax']);

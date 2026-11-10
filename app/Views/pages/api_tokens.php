@@ -37,4 +37,4 @@ document.querySelectorAll('[data-pin]').forEach(function(b){
 <li>Copy <code>whmcs/modules/servers/karnakpanel/</code> from the release zip into your WHMCS <code>modules/servers/</code>.</li>
 <li>WHMCS → Servers → Add: type KarnakPanel, hostname = this panel, password = the token. Product → Module Settings → Panel package = exact package name (use the <b>List packages</b> admin button in WHMCS to copy it verbatim).</li>
 </ol>
-<small style="color:var(--muted)">Terminate deletes sites, mail, DBs and DNS (file backups kept). Bad tokens get 401 + fail2ban. Pin the <code>whmcs</code> token to your WHMCS server's IP above — a stolen token then works nowhere else.</small></details></div><?php endif;?>
+<small style="color:var(--muted)">Terminate deletes sites, mail, DBs and DNS (file backups kept). Bad or unpinned-IP tokens get 401, are logged, and count toward the panel fail2ban jail (10 failures / 10 min from one IP bans port 8090 for an hour — a missing key counts, so fix a broken integration promptly). Pin the <code>whmcs</code> token to your WHMCS server's IP above — a stolen token then works nowhere else.</small></details></div><?php endif;?>

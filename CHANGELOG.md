@@ -1,5 +1,30 @@
 # KarnakPanel changelog
 
+## 1.5.58 — 2026-11-09 (security hardening)
+- Panel sessions now end after 2 hours without a request (12 hours maximum
+  from login). Before, a stolen session cookie stayed valid until PHP's
+  garbage collector happened to run.
+- PHP errors are never shown to visitors or API clients: the panel forces
+  error display off and answers uncaught/fatal errors with a plain 500 page.
+  Details still go to the panel log.
+- API token failures are written to the log and count toward the panel
+  firewall jail, and the jail's filter is refreshed on every update (upgraded
+  servers used to keep the install-time patterns forever). API errors now
+  return a generic message plus a short reference code; exception text and
+  privileged-command output stay in the panel log.
+- Calendar/contacts (CalDAV/CardDAV) password guessing: repeat offenders get
+  escalating firewall bans (capped at 2 hours because the port also serves
+  webmail), and each mailbox gets a per-address delay so guessing from many
+  addresses at once costs too.
+- Account passwords now require 10 characters everywhere — creation, the
+  provisioning API and password changes. Creation previously allowed 8.
+  Minting an API token with an unknown lifetime is refused instead of
+  silently creating a token that never expires.
+- Hardening: the root-script allowlist is built from code (a comment can no
+  longer widen it), database credential rotation keeps passwords off command
+  lines, DNS TXT/CAA values reject control characters and backslashes, logout
+  expires the session cookie, the panel vhost refuses dot-paths, and failed
+  second-factor codes count toward the firewall jail.
 ## 1.5.57 — 2026-11-08 (security: 2FA bypass, webmail guessing, migration secrets)
 - Fixed a two-factor login bypass: accounts protected only by an
   authenticator app were signed straight in after the password, without the

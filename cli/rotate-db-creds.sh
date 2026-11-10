@@ -46,7 +46,7 @@ done
 printf '%s\n' "$NEW_DB" > "$DBF.rotate.$$"; printf '%s\n' "$NEW_PV" > "$PVF.rotate.$$"
 chmod 600 "$DBF.rotate.$$" "$PVF.rotate.$$"; STAGED+=("$DBF.rotate.$$" "$PVF.rotate.$$")
 
-alter() { mysql -uroot -e "ALTER USER 'skypanel'@'localhost' IDENTIFIED BY '$1'; ALTER USER 'skypanel_prov'@'localhost' IDENTIFIED BY '$2';"; }
+alter() { printf "ALTER USER 'skypanel'@'localhost' IDENTIFIED BY '%s';\nALTER USER 'skypanel_prov'@'localhost' IDENTIFIED BY '%s';\n" "$1" "$2" | mysql -uroot; }
 alter "$NEW_DB" "$NEW_PV" || { echo "ALTER USER failed — nothing changed"; exit 1; }
 rollback() {
   echo "ROLLING BACK MariaDB passwords"; alter "$OLD_DB" "$OLD_PV" && echo "rolled back (configs untouched or restored)"
@@ -63,7 +63,7 @@ mv -f "$DBF.rotate.$$" "$DBF"; mv -f "$PVF.rotate.$$" "$PVF"
 if sudo -u "$PANEL_U" php -r '$c = include $argv[1]; $d = $c["db"];
      new PDO("mysql:host=".$d["host"].";dbname=".$d["name"], $d["user"], $d["pass"]);
      new PDO("mysql:host=".$d["host"], $d["provision_user"], $d["provision_pass"]); echo "ok";' "$LIVE" 2>/dev/null | grep -qx ok \
-   && mysql -uskypanel -p"$(cat "$DBF")" skypanel -Nse "SELECT 1" >/dev/null 2>&1; then
+   && MYSQL_PWD="$(cat "$DBF")" mysql -uskypanel skypanel -Nse "SELECT 1" >/dev/null 2>&1; then
   for f in "${CONFIGS[@]}"; do rm -f "$f.pre-rotate.$$"; done
   echo "rotated: skypanel + skypanel_prov (${#CONFIGS[@]} config file(s), pass files updated)"
 else

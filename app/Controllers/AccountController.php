@@ -31,8 +31,8 @@ class AccountController extends Controller {
         if (!in_array($role, ['user','reseller','admin'], true)) $role = 'user';
         if ($me['role']==='reseller' && $role!=='user') { Helpers::flash('err','Resellers can only create user accounts'); Helpers::redirect('/accounts'); }
         if ($role === 'admin' && $me['role'] !== 'admin') $role = 'user'; // belt: forged POST from non-admin
-        if (!Helpers::validNewUsername($username) || strlen($password)<8 || !Helpers::validEmail($email)) {
-            Helpers::flash('err','Invalid username/email/password (user a-z0-9_, pass 8+ chars)'); Helpers::redirect('/accounts');
+        if (!Helpers::validNewUsername($username) || strlen($password)<10 || !Helpers::validEmail($email)) {
+            Helpers::flash('err','Invalid username/email/password (user a-z0-9_, pass 10+ chars)'); Helpers::redirect('/accounts');
         }
         $pwned = Auth::passwordPwned($password);
         if ($pwned !== null && $pwned > 0) { Helpers::flash('err',"That password appears in $pwned known breach(es) — choose an unleaked one"); Helpers::redirect('/accounts'); }

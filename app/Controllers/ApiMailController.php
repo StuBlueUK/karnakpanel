@@ -35,7 +35,7 @@ class ApiMailController extends ApiController {
             ServiceManager::run('email-add.sh', [$local.'@'.$d['domain'], $t['username']]);
             Helpers::log("API mailbox $local@{$d['domain']} created by {$me['username']}");
             $this->json(['ok' => true, 'mailbox' => $local.'@'.$d['domain']]);
-        } catch (Throwable $e) { $this->json(['error' => 'create failed: '.$e->getMessage()], 500); }
+        } catch (Throwable $e) { $this->apiFailed('create', 500, $e); }
     }
     public function mailDelete(): void {
         $me = $this->tokenAuth();
@@ -52,7 +52,7 @@ class ApiMailController extends ApiController {
             ServiceManager::run('email-remove.sh', [$row['localpart'].'@'.$row['domain']]);
             Helpers::log("API mailbox {$row['localpart']}@{$row['domain']} deleted by {$me['username']}");
             $this->json(['ok' => true, 'deleted' => $row['localpart'].'@'.$row['domain']]);
-        } catch (Throwable $e) { $this->json(['error' => 'delete failed: '.$e->getMessage()], 500); }
+        } catch (Throwable $e) { $this->apiFailed('delete', 500, $e); }
     }
     public function mailForward(): void {
         $me = $this->tokenAuth();
@@ -76,7 +76,7 @@ class ApiMailController extends ApiController {
         $r = ServiceManager::run('forward-add.sh', [$local.'@'.$d['domain'], $joined]);
         if (($r['code'] ?? 1) !== 0) {
             EmailModel::deleteForwardAt((int)$d['id'], $local);
-            $this->json(['error' => 'forwarder refused: '.trim($r['out'])], 422);
+            $this->apiFailed('forwarder', 422, null, $r['out']);
         }
         Helpers::log("API forwarder $local@{$d['domain']} set by {$me['username']}");
         $this->json(['ok' => true, 'forwarder' => $local.'@'.$d['domain'], 'targets' => $joined]);

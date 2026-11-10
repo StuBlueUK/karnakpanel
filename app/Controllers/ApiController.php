@@ -1,21 +1,8 @@
 <?php
 declare(strict_types=1);
 class ApiController extends Controller {
-    protected function tokenAuth(): ?array {
-        $h = $_SERVER['HTTP_X_API_KEY'] ?? '';
-        if (!$h || !preg_match('/^[a-f0-9]{64}$/', $h)) return null;
-        // tokens are stored sha256-hashed (a table leak alone grants nothing)
-        $u = ApiModel::token($h);
-        if (!$u) return null;
-        // IP pin: a stolen token is useless off the pinned host (WHMCS IP or
-        // same-box server IP). NULL/empty = any IP (previous behaviour).
-        $ip = (string)($_SERVER['REMOTE_ADDR'] ?? '');
-        if (!empty($u['allowed_ip']) && ($u['allowed_ip'] !== $ip)) return null;
-        // last-use audit (at most one write a minute per token; never fatal)
-        try { ApiModel::touchToken((int)$u['token_id'], $ip); } catch (Throwable $e) {}
-        unset($u['password_hash'], $u['totp_secret']);
-        return $u;
-    }
+    /** The token/user resolution lives in Core/ApiAuth (logs failures for fail2ban). */
+    protected function tokenAuth(): ?array { return ApiAuth::user(); }
     public function accounts(): void {
         $u = $this->tokenAuth();
         if (!$u || !in_array($u['role'],['admin','reseller'])) $this->json(['error'=>'unauthorized'],401);
@@ -36,6 +23,20 @@ class ApiController extends Controller {
         }
         return $in;
     }
+    /**
+     * Client-facing API failure: one generic message + a short ref. Detail
+     * (exception text, privileged-script stdout, paths) goes to panel.log only —
+     * API clients used to receive raw script output and SQL errors (sweep Low,
+     * 2026-11-08). Support reads the ref out of the log line.
+     */
+    protected function apiFailed(string $what, int $code, ?Throwable $e = null, ?string $detail = null): void {
+        $ref = bin2hex(random_bytes(4));
+        $line = "API $what failed [ref $ref]";
+        if ($e !== null) $line .= ': '.$e->getMessage();
+        if ($detail !== null && trim($detail) !== '') $line .= ' — '.trim($detail);
+        Helpers::log($line);
+        $this->json(['error' => $what.' failed', 'ref' => $ref], $code);
+    }
     public function provCreate(): void {
         $me = $this->adminToken();
         if (!$me) $this->json(['error' => 'unauthorized'], 401);
@@ -44,8 +45,8 @@ class ApiController extends Controller {
         $email = trim((string)($in['email'] ?? ''));
         $password = (string)($in['password'] ?? '');
         $pkgName = trim((string)($in['package'] ?? ''));
-        if (!Helpers::validNewUsername($username) || strlen($password) < 8 || !Helpers::validEmail($email)) {
-            $this->json(['error' => 'invalid username/email/password (user a-z0-9_, pass 8+ chars, real email)'], 422);
+        if (!Helpers::validNewUsername($username) || strlen($password) < 10 || !Helpers::validEmail($email)) {
+            $this->json(['error' => 'invalid username/email/password (user a-z0-9_, pass 10+ chars, real email)'], 422);
         }
         $pwned = Auth::passwordPwned($password);
         if ($pwned !== null && $pwned > 0) $this->json(['error' => 'password appears in known breaches — choose an unleaked one'], 422);
@@ -63,8 +64,7 @@ class ApiController extends Controller {
         } catch (DomainException $e) {
             $this->json(['error' => 'create failed: '.$e->getMessage()], 409);
         } catch (Throwable $e) {
-            Helpers::log("API new account $username failed: ".$e->getMessage());
-            $this->json(['error' => 'create failed: '.($e instanceof PDOException ? 'database error' : $e->getMessage())], 500);
+            $this->apiFailed('create', 500, $e);
         }
     }
     protected function provTarget(string $username): array {
@@ -102,7 +102,7 @@ class ApiController extends Controller {
             User::teardown($t);
             Helpers::log("API account {$t['username']} terminated by {$me['username']}");
             $this->json(['ok' => true, 'terminated' => $t['username']]);
-        } catch (Throwable $e) { $this->json(['error' => 'terminate failed: '.$e->getMessage()], 500); }
+        } catch (Throwable $e) { $this->apiFailed('terminate', 500, $e); }
     }
     public function provPassword(): void {
         $me = $this->adminToken();

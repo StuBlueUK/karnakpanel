@@ -116,6 +116,13 @@
 # 40. webmail brute force (webmail-jail.sh): Roundcube login had no throttle
 #     anywhere — [dovecot] only ever saw 127.0.0.1 and [lsws] watches OLS
 #     errors, not Roundcube's. Bans on 8091 only (ufw-port).
+# 41. panel jail filter refresh (fail2ban-panel.sh): the filter was written at
+#     install time only, so upgraded boxes never saw new patterns. Now counts
+#     "API auth failed from <ip>" too (token guessing was invisible to the
+#     jail). Rewrites only when the content differs.
+# 42. panel vhost dotfiles (panel-vhost-dotfiles.sh): the panel docroot had
+#     allowBrowse 1 and no dotfile guard — a stray .env/.git in public/ was
+#     served as a static file. New installs get it from the template.
 # Each step is independent: one failing never skips the next.
 set -uo pipefail
 rc=0
@@ -201,6 +208,8 @@ fi
 if [[ -f /usr/local/lsws/conf/vhosts/SkyPanel/vhost.conf ]]; then
   OUT="$("$HERE/panel-php-patch.sh" 2>&1)" || { echo "host-converge: panel PHP patch failed: $OUT"; rc=1; }
   grep -E '^panel moved|^skypanel-php' <<<"$OUT" | sed 's/^/host-converge: /'
+  OUT="$("$HERE/panel-vhost-dotfiles.sh" 2>&1)" || { echo "host-converge: panel vhost hardening failed: $OUT"; rc=1; }
+  [[ -n "$OUT" ]] && sed 's/^/host-converge: /' <<<"$OUT"
 fi
 # 10. cross-account symlink defences (FPM filter, vhost allowSymbolLink 2,
 #     customer cron onto cron-run.sh) — AFTER the PHP installs above
@@ -232,6 +241,7 @@ fi
 "$HERE/panel-user.sh" || rc=1
 "$HERE/shield-xss-patch.sh" || rc=1
 "$HERE/panel-jail-retry.sh" || rc=1
+"$HERE/fail2ban-panel.sh" || rc=1
 "$HERE/smtp-restrict.sh" apply --quiet || rc=1
 "$HERE/bind-version-patch.sh" || rc=1
 for f in /var/log/karnakpanel/php-*.error.log; do
